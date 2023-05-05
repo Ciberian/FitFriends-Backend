@@ -1,0 +1,15 @@
+# Подписка на получение уведомлений о новых тренировках
+POST http://localhost:3333/api/notify/subscriber HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ2ODk0ZDQ4NDYzMTI5NjMwYmYwMGMiLCJlbWFpbCI6ImNsaWVudDNAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtGB0LXQvdC40Y8iLCJhdmF0YXIiOiIiLCJmYXZvcml0ZUd5bXMiOltdLCJpYXQiOjE2ODI1MDk3OTMsImV4cCI6MTY4MjUxNjk5M30.p97pcjU__bH8HXU-BOgT-UAIMhRQgx35oX6wV4LpiDA
+
+{
+  "trainerId": "644389818d1b92c09cb87852",
+  "trainerName": "Марк"
+}
+
+###
+# Отписка от получения уведомлений о новых тренировках от тренера с указнным id в параметрах
+DELETE http://localhost:3333/api/notify/64380940331da46b3f5a4776/subscriber HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiYXZhdGFyIjoiIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyNTA5MDY5LCJleHAiOjE2ODI1MTYyNjl9.Y22koG2BGpRDlUtB_5aNib9tG5jw_PY6mQVyjp-PxKM

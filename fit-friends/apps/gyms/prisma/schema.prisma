@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../../../node_modules/@prisma/client-gyms"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Gym {
+  id                 Int @id @default(autoincrement())
+  title              String
+  location           String
+  isVerified         Boolean?
+  gymFeatures        String[]
+  photos             String[]
+  description        String
+  price              Int
+  registerDate       DateTime @default(now())
+}

@@ -1,0 +1,24 @@
+###
+# Получение списка залов
+GET http://localhost:3332/api/gyms HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyMjY5NjMzLCJleHAiOjE2ODIyNzY4MzN9.RBkwqToyPWXKxHV3hPw_rJgxrcs8w8PNJh7EHfhUx9M
+
+###
+# Получение списка избранных залов
+GET http://localhost:3332/api/gyms/favorite HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyMjY5NjMzLCJleHAiOjE2ODIyNzY4MzN9.RBkwqToyPWXKxHV3hPw_rJgxrcs8w8PNJh7EHfhUx9M
+
+###
+# Получение списка залов, в которые у пользователя есть абонемент
+GET http://localhost:3332/api/gyms/on-balance HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyMjY5NjMzLCJleHAiOjE2ODIyNzY4MzN9.RBkwqToyPWXKxHV3hPw_rJgxrcs8w8PNJh7EHfhUx9M
+Content-Type: application/json
+
+{
+  "gymsOnUserBalance": [1, 3, 5, 12]
+}
+
+###
+# Получение информации о зале по id
+GET http://localhost:3332/api/gyms/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyMjY5NjMzLCJleHAiOjE2ODIyNzY4MzN9.RBkwqToyPWXKxHV3hPw_rJgxrcs8w8PNJh7EHfhUx9M

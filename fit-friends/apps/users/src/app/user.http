@@ -1,0 +1,274 @@
+# Регистрация пользователя с ролью Тренер
+POST http://localhost:3330/api/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Марк",
+  "email": "trainer2@gmail.com",
+  "password": "abcdefg",
+  "gender": "Мужчина",
+  "role": "Тренер",
+  "location": "Спортивная",
+  "birthDate": "2002-02-02",
+  "level": "Новичок",
+  "trainingType": "Бокс",
+  "certificate": "certificate2.pdf",
+  "merits": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: коррекция фигуры и осанки, снижение веса, восстановление после травм, пилатес.",
+  "personalTraining": "true"
+}
+
+###
+# Регистрация пользователя с ролью Клиент
+POST http://localhost:3330/api/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Вася",
+  "email": "client5@gmail.com",
+  "password": "abcdefg",
+  "gender": "Мужчина",
+  "role": "Клиент",
+  "location": "Спортивная",
+  "birthDate": "2004-04-04",
+  "level": "Профессионал",
+  "trainingType": "Бег",
+  "trainingDuration": "50-80 мин",
+  "caloriesToLose": 4555,
+  "caloriesToLosePerDay": 4555,
+  "description": "Привет! Я Вася и мне 19 лет.Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по кроссфиту, также занимаюсь йогой, рястяжкой и пилатесом.",
+  "readyToTraining": "false"
+}
+
+###
+# Авторизация пользователя
+# @name login
+POST http://localhost:3330/api/users/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "client5@gmail.com",
+  "password": "abcdefg"
+}
+
+###
+@authToken = {{login.response.body.accessToken}}
+
+###
+# Обновление access-токена, с помощью refresh-токена
+# Примечание: url содержит ID авторизованного пользователя, а не какого-то случайного пользователя
+POST http://localhost:3330/api/users/6429d832faf80ae706323a47/refresh HTTP/1.1
+Content-Type: application/json
+
+{
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODA4MzYzMTEsImV4cCI6MTY4MTQ0MTExMX0.nbPtBp0lrbaiJPRQMKuCEyaCc1h6doRcM2fZmsBhwHk"
+}
+
+###
+# Отзыв refresh-токена
+POST http://localhost:3330/api/users/drop HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Обновление информации о пользователе
+PATCH http://localhost:3330/api/users/ HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "name": "Яна"
+}
+
+###
+# Получение информации о пользователе
+GET http://localhost:3330/api/users/user/644ba291db79024dd7a9f988 HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Получение списка ВСЕХ пользователей
+GET http://localhost:3330/api/users/ HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Получение списка только Тренеров
+GET http://localhost:3330/api/users/?location=Спортивная&level=Новичок&sortDirection=asc&userRole=trainer HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+## Upload user avatar
+POST http://localhost:3330/api/users/avatar HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="avatar"; filename="test.png"
+Content-Type: image/png
+
+< C:/Users/simae/Desktop/test.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+#----------------------------------Дневники----------------------------------------
+###
+# Получение дневника питания пользователя
+GET http://localhost:3330/api/users/nutrition-diary HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Редактирование дневника питания пользователя
+PATCH http://localhost:3330/api/users/nutrition-diary HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "dinner": 600,
+  "snack": 300
+}
+
+###
+# Получение дневника тренировок пользователя
+GET http://localhost:3330/api/users/training-diary HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Редактирование дневника тренировок пользователя
+PATCH http://localhost:3330/api/users/training-diary HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "trainingTitle": "Box",
+  "calories": 1800,
+  "duration": "30-50 мин"
+}
+
+#-----------------------------Баланс пользователя----------------------------------
+###
+# Получение баланса пользователя
+GET http://localhost:3330/api/users/client-balance HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+###
+# Изменение баланса пользователя (добавление тренировки/зала на баланс пользователя).
+PATCH http://localhost:3330/api/users/client-balance/add HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "type": "Тренировка",
+  "serviceId": 3,
+  "quantity": 33
+}
+
+###
+# Изменение баланса пользователя (списание тренировки с баланса пользователя).
+PATCH http://localhost:3330/api/users/client-balance/dec HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "trainingId": 2
+}
+
+#-----------------------------------Друзья-----------------------------------------
+###
+# Запрос на добавление в друзья (userId - ID пользователя, к которому идёт запрос)
+POST http://localhost:3330/api/users/friends/req HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "644ba291db79024dd7a9f983"
+}
+
+###
+# Принять заявку в друзья (userId - ID пользователя, которому возвращается положительный ответ)
+POST http://localhost:3330/api/users/friends/accept HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "6446894d48463129630bf00c"
+}
+
+###
+# Отклонить заявку в друзья (userId - ID пользователя, которому возвращается отрицательный ответ)
+POST http://localhost:3330/api/users/friends/reject HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "643a58f5b5765fe74cf97fee"
+}
+
+###
+# Удалить друга (userId - ID пользователя, которого удаляют из списка друзей)
+DELETE http://localhost:3330/api/users/friends/delete HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "6446894d48463129630bf00c"
+}
+
+###
+# Получение списка друзей авторизованного пользователя
+GET http://localhost:3330/api/users/friends/ HTTP/1.1
+Authorization: Bearer {{authToken}}
+
+
+#----------------------Персональная/совместная тренировка---------------------------
+###
+# Запрос на персональную тренировку (userId - ID пользователя, к которому идёт запрос)
+POST http://localhost:3330/api/users/personal-training/req HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "64380940331da46b3f5a4776"
+}
+
+###
+# Принять запрос на персональную тренировку (userId - ID пользователя, которому возвращается положительный ответ)
+POST http://localhost:3330/api/users/personal-training/accept HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "6446894d48463129630bf00c"
+}
+
+###
+# Отклонить запрос на персональную тренировку (userId - ID пользователя, которому возвращается отрицательный ответ)
+POST http://localhost:3330/api/users/personal-training/reject HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "userId": "6446894d48463129630bf00c"
+}
+
+#----------------------------------Избранные залы---------------------------------------
+###
+# Добавление зала в избранное
+PATCH http://localhost:3330/api/users/favorite-gyms/add HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "gymId": 1
+}
+
+###
+# Удаление зала из избранного
+PATCH http://localhost:3330/api/users/favorite-gyms/del HTTP/1.1
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "gymId": 44
+}
+
+###
+# Удалить все оповещения
+DELETE http://localhost:3330/api/users/alerts HTTP/1.1
+Authorization: Bearer {{authToken}}

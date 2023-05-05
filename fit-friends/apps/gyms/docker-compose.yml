@@ -1,0 +1,41 @@
+version: '3.5'
+services:
+  postgres:
+    user: root
+    image: postgres:14-alpine
+    container_name: postgres-gyms
+    environment:
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'test'
+      POSTGRES_DB: 'fitfriends-gyms'
+    ports:
+      - '5433:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d test']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    volumes:
+      - ../../../data/gyms/db:/var/lib/postgresql/data
+    networks:
+      - postgres
+
+  pgadmin:
+    user: root
+    container_name: pgadmin-gyms
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'mymail@htmlacademy.local'
+      PGADMIN_DEFAULT_PASSWORD: 'test'
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - ../../../data/gyms/db:/var/lib/pgadmin
+    ports:
+      - '8084:80'
+    restart: unless-stopped
+    networks:
+      - postgres
+networks:
+  postgres:
+    driver: bridge

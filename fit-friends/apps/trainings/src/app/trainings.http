@@ -1,0 +1,121 @@
+# Создание новой тренировки
+POST http://localhost:3331/api/trainings/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4MDk0MDMzMWRhNDZiM2Y1YTQ3NzYiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JLQsNC70LXRgNC40Y8iLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI4NjM3MDAsImV4cCI6MTY4Mjg3MDkwMH0.CEGFEYv5VjFGNxBHSMW_bm4p89tUZAF5w6Gi3FHYhOw
+
+{
+  "title": "Power151515",
+  "image": "power.png",
+  "level": "Профессионал",
+  "type": "Бокс",
+  "duration": "50-80 мин",
+  "gender": "Мужчина",
+  "caloriesToLose": 4130,
+  "description": "Тренировка на отработку правильной техники работы с тяжелыми весами.",
+  "video": "power.mp4",
+  "price": 15000,
+  "isSpecialOffer": true
+}
+
+###
+# Обновление тренировки по id
+PATCH http://localhost:3331/api/trainings/8 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDJmYjc4ZTM2NDNkYTM5NDQxYjllM2MiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JXQstCwIiwiaWF0IjoxNjgwODY1NTMzLCJleHAiOjE2ODA4NzI3MzN9.YSQ6SmfS0Evek2iO0iP3kzoKyZ2T0wZPka2erpG4X2k
+
+{
+  "title": "Power8989"
+}
+
+###
+# Получение информации о тренировке по id
+GET http://localhost:3331/api/trainings/7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQzODk4MThkMWI5MmMwOWNiODc4NTIiLCJlbWFpbCI6InRyYWluZXIyQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JzQsNGA0LoiLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI1MDcyNDQsImV4cCI6MTY4MjUxNDQ0NH0.CTn7ofjQqfuD6vhqPZ3Q10UeHHBkNeCF1wfLjm7QiWw
+
+###
+# Получение списка только тренеровок относящихся к конкретному тренеру
+GET http://localhost:3331/api/trainings/personal HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQzODk4MThkMWI5MmMwOWNiODc4NTIiLCJlbWFpbCI6InRyYWluZXIyQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JzQsNGA0LoiLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI1MDcyNDQsImV4cCI6MTY4MjUxNDQ0NH0.CTn7ofjQqfuD6vhqPZ3Q10UeHHBkNeCF1wfLjm7QiWw
+
+###
+# Получение списка только тренеровок относящихся к конкретному тренеру с параметрами запроса
+GET http://localhost:3331/api/trainings/personal/?priceLTE=100000&priceGTE=1000&duration=больше_80_мин&caloriesLTE=4000&caloriesGTE=2000 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4MDk0MDMzMWRhNDZiM2Y1YTQ3NzYiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JLQsNC70LXRgNC40Y8iLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI1MDYyMzMsImV4cCI6MTY4MjUxMzQzM30.-ZRrE_dZbXdGcPpRBb9d0W9cZdhKCui_Axve9LHC2ig
+
+###
+# Получение списка всех тренеровок
+GET http://localhost:3331/api/trainings/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ2ODk0ZDQ4NDYzMTI5NjMwYmYwMGMiLCJlbWFpbCI6ImNsaWVudDNAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtGB0LXQvdC40Y8iLCJhdmF0YXIiOiIiLCJmYXZvcml0ZUd5bXMiOltdLCJpYXQiOjE2ODI1MDYzMTcsImV4cCI6MTY4MjUxMzUxN30.BNGNRtVu806zjTDFyfJ--vUdCElj2X0iplY7fQaQAsU
+
+###
+# Получение списка всех тренеровок с параметрами запроса
+GET http://localhost:3331/api/trainings/?priceLTE=100000&priceGTE=1000&caloriesLTE=500 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ2ODk0ZDQ4NDYzMTI5NjMwYmYwMGMiLCJlbWFpbCI6ImNsaWVudDNAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtGB0LXQvdC40Y8iLCJmYXZvcml0ZUd5bXMiOltdLCJpYXQiOjE2ODI0MTQzMTksImV4cCI6MTY4MjQyMTUxOX0.9T4cfqatBUOGIu-mJlmHLEF3Vi_xLxAigaa-CQ0GVpE
+
+###
+# Получение списка купленных пользователем тренировок
+GET http://localhost:3332/api/trainings/on-balance HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4ZTRmM2JiNTMxZThmMDY4MDg1NzAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtCw0YLQtdGA0LjQvdCwIiwiZmF2b3JpdGVHeW1zIjpbNCwxXSwiaWF0IjoxNjgyMjY5NjMzLCJleHAiOjE2ODIyNzY4MzN9.RBkwqToyPWXKxHV3hPw_rJgxrcs8w8PNJh7EHfhUx9M
+Content-Type: application/json
+
+{
+  "trainingsOnUserBalance": [1, 3, 5, 12]
+}
+
+###
+# Upload training video
+POST http://localhost:3331/api/trainings/14/video HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4MDk0MDMzMWRhNDZiM2Y1YTQ3NzYiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JLQsNC70LXRgNC40Y8iLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI4NjM3MDAsImV4cCI6MTY4Mjg3MDkwMH0.CEGFEYv5VjFGNxBHSMW_bm4p89tUZAF5w6Gi3FHYhOw
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="video"; filename="HtmlAcademy_1.mov"
+Content-Type: video/mov
+
+< C:/Users/simae/Desktop/Видео/HtmlAcademy_1.mov
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+#--------------------------------Orders-----------------------------------
+# Создание заказа (покупка тренировки)
+# В BFF нужно будет изменить баланс пользователя если заказ прошёл успешно, т.е. выполнить запрос в микросервис users
+POST http://localhost:3331/api/orders/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDJmYjgwNzM2NDNkYTM5NDQxYjllNDAiLCJlbWFpbCI6ImNsaWVudDFAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQr9C90LAiLCJpYXQiOjE2ODA4NjU0MzksImV4cCI6MTY4MDg3MjYzOX0.AVxyW5TmoGucFY93dE96xIOiX5JHZK_hIujv-_2N7CM
+
+{
+  "type": "Тренировка",
+  "serviceId": 8,
+  "trainerId": "642fb78e3643da39441b9e3c",
+  "price": 888,
+  "quantity": 9,
+  "paymentMethod": "Mir"
+}
+
+###
+# Получение информации о заказе по id
+GET http://localhost:3331/api/orders/3 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDJmYjc4ZTM2NDNkYTM5NDQxYjllM2MiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JXQstCwIiwiaWF0IjoxNjgwODY1NTMzLCJleHAiOjE2ODA4NzI3MzN9.YSQ6SmfS0Evek2iO0iP3kzoKyZ2T0wZPka2erpG4X2k
+
+###
+# Получение списка своих заказов для тренера
+GET http://localhost:3331/api/orders/?quantitySortDirection=asc HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDJmYjc4ZTM2NDNkYTM5NDQxYjllM2MiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JXQstCwIiwiaWF0IjoxNjgwODY1NTMzLCJleHAiOjE2ODA4NzI3MzN9.YSQ6SmfS0Evek2iO0iP3kzoKyZ2T0wZPka2erpG4X2k
+
+###
+#--------------------------------Reviews-----------------------------------
+# Создание отзыва
+POST http://localhost:3331/api/reviews/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDQ2ODk0ZDQ4NDYzMTI5NjMwYmYwMGMiLCJlbWFpbCI6ImNsaWVudDNAZ21haWwuY29tIiwicm9sZSI6ItCa0LvQuNC10L3RgiIsIm5hbWUiOiLQmtGB0LXQvdC40Y8iLCJhdmF0YXIiOiIiLCJmYXZvcml0ZUd5bXMiOltdLCJpYXQiOjE2ODI1MDYzMTcsImV4cCI6MTY4MjUxMzUxN30.BNGNRtVu806zjTDFyfJ--vUdCElj2X0iplY7fQaQAsU
+
+{
+  "trainingId": 7,
+  "rating": 5,
+  "comment": "№2. Регулярно выполняю эту тренировку дома и вижу результат! Спина стала прямее, появилось больше сил и гибкость тоже стала лучше, хотя упражнения довольно простые."
+}
+
+###
+# Получение списка ревью по id тренировки
+GET http://localhost:3331/api/reviews/7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDM4MDk0MDMzMWRhNDZiM2Y1YTQ3NzYiLCJlbWFpbCI6InRyYWluZXIxQGdtYWlsLmNvbSIsInJvbGUiOiLQotGA0LXQvdC10YAiLCJuYW1lIjoi0JLQsNC70LXRgNC40Y8iLCJhdmF0YXIiOiIiLCJpYXQiOjE2ODI1MDYyMzMsImV4cCI6MTY4MjUxMzQzM30.-ZRrE_dZbXdGcPpRBb9d0W9cZdhKCui_Axve9LHC2ig

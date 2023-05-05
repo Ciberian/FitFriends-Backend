@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "../../../node_modules/@prisma/client-trainings"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Training {
+  id                 Int @id @default(autoincrement())
+  title              String
+  image              String
+  level              String
+  type               String
+  duration           String
+  gender             String
+  caloriesToLose     Int
+  description        String
+  video              String
+  price              Int?
+  rating             Float?
+  ratingSum          Int?
+  reviewsCount       Int?
+  trainer            String?
+  isSpecialOffer     Boolean
+  registerDate       DateTime @default(now())
+  reviews            Review[]
+}
+
+model Review {
+  id                 Int @id @default(autoincrement())
+  authorName         String
+  authorAvatar       String
+  training           Training @relation(fields: [trainingId], references: [id])
+  trainingId         Int
+  rating             Int
+  comment            String
+  creationDate       DateTime @default(now())
+}
+
+model Order {
+  id                 Int @id @default(autoincrement())
+  type               String
+  serviceId          Int
+  trainerId          String
+  price              Int
+  quantity           Int
+  totalPrice         Int
+  paymentMethod      PaymentMethod
+  creationDate       DateTime @default(now())
+}
+
+enum PaymentMethod {
+  Visa
+  Mir
+  Umoney
+}
