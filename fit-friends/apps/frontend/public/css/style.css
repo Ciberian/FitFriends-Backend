@@ -4787,7 +4787,7 @@ input:active + .custom-textarea__text {
   align-items: center;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: end;
+  justify-content: flex-end;
   height: 26px;
   margin-bottom: 8px;
 }
@@ -5749,7 +5749,7 @@ input:active + .custom-textarea__text {
   flex-wrap: wrap;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 0 0 35px;
   padding: 0 99px;
 }
