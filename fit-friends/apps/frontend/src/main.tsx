@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import browserHistory from './browser-history';
 import HistoryRouter from './components/history-router/history-router';
 import App from './components/app/app';
-import { Provider } from 'react-redux';
-import { store } from './store';
+// import { Provider } from 'react-redux';
+// import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -12,10 +12,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Provider store = {store}>
+    {/* <Provider store = {store}> */}
       <HistoryRouter history={browserHistory}>
         <App />
       </HistoryRouter>
-    </Provider>
+    {/* </Provider> */}
   </React.StrictMode>
 );
