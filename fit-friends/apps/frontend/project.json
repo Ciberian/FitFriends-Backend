@@ -11,15 +11,17 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/frontend",
-        "index": "apps/frontend/src/index.html",
+        "index": "apps/frontend/src/assets/index.html",
         "baseHref": "/",
         "main": "apps/frontend/src/main.tsx",
         "tsConfig": "apps/frontend/tsconfig.app.json",
         "assets": [
+          "apps/frontend/src/assets/css/*.css",
           "apps/frontend/src/assets/favicon/favicon.ico",
-          "apps/frontend/src/assets/fonts",
-          "apps/frontend/src/assets/img",
-          "apps/frontend/src/assets/js"
+          "apps/frontend/src/assets/favicon/*.png",
+          "apps/frontend/src/assets/fonts/**/*.(woff | woff2)",
+          "apps/frontend/src/assets/img/**/*.(jpg | png | svg)",
+          "apps/frontend/src/assets/js/**/*.js"
         ],
         "styles": ["apps/frontend/src/assets/css/style.css"],
         "scripts": [],
