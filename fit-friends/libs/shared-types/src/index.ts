@@ -9,7 +9,6 @@ export * from './lib/enums/training-type.enum';
 export * from './lib/enums/user-gender.enum';
 export * from './lib/enums/user-role.enum';
 export * from './lib/enums/command-event.enum';
-export * from './lib/pipes/trim-body-values.pipe';
 export * from './lib/pipes/mongoid-validation.pipe';
 export * from './lib/client.interface';
 export * from './lib/gym.interface';

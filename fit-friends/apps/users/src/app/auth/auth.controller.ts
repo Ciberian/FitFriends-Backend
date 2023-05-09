@@ -6,7 +6,6 @@ import {
   Param,
   HttpStatus,
   Controller,
-  UsePipes,
   UseGuards,
   UseInterceptors,
   UploadedFile,
@@ -52,7 +51,6 @@ import { Image } from '@fit-friends/core';
 import {
   ITokenPayload,
   MongoidValidationPipe,
-  TrimBodyValuesPipe,
   UserRole,
 } from '@fit-friends/shared-types';
 
@@ -69,7 +67,6 @@ export class AuthController {
     description: 'The new user has been successfully created.',
   })
   @ApiBody({schema: {anyOf: refs(CreateClientDto, CreateTrainerDto)}})
-  @UsePipes(new TrimBodyValuesPipe())
   public async create(@Body() dto: CreateClientDto | CreateTrainerDto) {
     const newUser = await this.authService.register(dto);
 
