@@ -25,8 +25,8 @@ export class TrainerEntity implements ITrainer {
   public alerts?: IAlert[];
   public registrationDate?: Date;
   public level: UserLevel;
-  public trainingType: TrainingType;
-  public certificate: string;
+  public trainingType: TrainingType[];
+  public certificates: string[];
   public merits: string;
   public personalTraining: boolean;
   public refreshTokenHash: string;
@@ -54,7 +54,7 @@ export class TrainerEntity implements ITrainer {
     this.registrationDate = user.registrationDate;
     this.level = user.level;
     this.trainingType = user.trainingType;
-    this.certificate = user.certificate;
+    this.certificates = user.certificates;
     this.merits = user.merits;
     this.personalTraining = user.personalTraining;
     this.refreshTokenHash = user.refreshTokenHash;

@@ -1,5 +1,5 @@
 import SiteHeader from '../../components/site-header/site-header'
-import TrainerFriendsList from '../../components/trainer-friends-list/trainer-friends-list';
+import FriendsList from '../../components/friends-list/friends-list';
 
 function TrainerFriendsPage(): JSX.Element {
   return (
@@ -14,7 +14,7 @@ function TrainerFriendsPage(): JSX.Element {
                   <use xlinkHref="#arrow-left"></use>
                 </svg><span>Назад</span>
               </button>
-              <TrainerFriendsList friends={[]}/>
+              <FriendsList clients={[]}/>
             </div>
           </div>
         </section>

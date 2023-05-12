@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import SiteHeader from '../../components/site-header/site-header';
 
-function UserPersonalAccountPage(): JSX.Element {
+function ClientPersonalAccountPage(): JSX.Element {
   return (
     <div className="wrapper">
       <SiteHeader />
@@ -52,7 +52,7 @@ function UserPersonalAccountPage(): JSX.Element {
                           <input
                             type="text"
                             name="name"
-                            value="Валерия"
+                            value="Катерина"
                             disabled
                           />
                         </span>
@@ -62,10 +62,7 @@ function UserPersonalAccountPage(): JSX.Element {
                       <label>
                         <span className="custom-textarea__label">Описание</span>
                         <textarea name="description" placeholder=" " disabled>
-                          Персональный тренер и инструктор групповых программ с
-                          опытом более 4х лет. Специализация: коррекция фигуры и
-                          осанки, снижение веса, восстановление после травм,
-                          пилатес.
+                        Привет! Я Катерина и мне 27 лет.Обожаю спорт и все, что с ним связанно. Регулярно хожу на тренировки по кроссфиту, также занимаюсь йогой, рястяжкой и пилатесом.
                         </textarea>
                       </label>
                     </div>
@@ -87,7 +84,7 @@ function UserPersonalAccountPage(): JSX.Element {
                           </svg>
                         </span>
                         <span className="custom-toggle__label">
-                          Готов тренировать
+                          Готов(а) к тренировке
                         </span>
                       </label>
                     </div>
@@ -475,4 +472,4 @@ function UserPersonalAccountPage(): JSX.Element {
   );
 }
 
-export default UserPersonalAccountPage;
+export default ClientPersonalAccountPage;

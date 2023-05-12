@@ -1,5 +1,5 @@
 import { ITraining } from '@fit-friends/shared-types';
-import MyTrainingItem from '../my-training-item/my-training-item';
+import TrainingItem from '../training-item/training-item';
 
 type MyTrainingsListProps = {
   trainings: ITraining[];
@@ -10,7 +10,7 @@ function MyTrainingsList({ trainings }: MyTrainingsListProps): JSX.Element {
     <div className="my-trainings">
       <ul className="my-trainings__list">
         {trainings.map((training) => (
-          <MyTrainingItem training={training} key={training.id} />
+          <TrainingItem training={training} key={training.id} />
         ))}
       </ul>
       <div className="show-more my-trainings__show-more">

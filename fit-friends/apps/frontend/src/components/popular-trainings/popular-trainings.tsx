@@ -44,7 +44,7 @@ function PopularTrainings({ popularTrainings }: PopularTrainingsProps): JSX.Elem
           </div>
           <ul className="popular-trainings__list">
             {popularTrainings.map((popularTraining) => (
-              <PopularTraining popularTraining={popularTraining} key={popularTraining.id} />
+              <PopularTraining popularTraining={popularTraining}key={popularTraining.id} isForIndexPage  />
             ))}
           </ul>
         </div>

@@ -7,7 +7,7 @@ import { IClientProgress } from './client-progress.interface';
 
 export interface IClient extends IUser {
   level: UserLevel;
-  trainingType: TrainingType;
+  trainingType: TrainingType[];
   trainingDuration: TrainingDuration;
   caloriesToLose: number;
   caloriesToLosePerDay: number;

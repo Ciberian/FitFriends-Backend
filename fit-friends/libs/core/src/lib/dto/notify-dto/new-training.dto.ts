@@ -1,4 +1,4 @@
-import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsIn, IsNumber, IsOptional, IsString } from 'class-validator';
 import { TrainingType, UserGender, UserLevel } from '@fit-friends/shared-types';
 
 export class NewTrainingDto {
@@ -8,7 +8,7 @@ export class NewTrainingDto {
   @IsEnum(UserLevel)
   level: UserLevel;
 
-  @IsEnum(TrainingType)
+  @IsIn([ 'Йога', 'Бег', 'Бокс', 'Стрейчинг', 'Кроссфит', 'Аэробика', 'Пилатес'])
   type: TrainingType;
 
   @IsEnum(UserGender)

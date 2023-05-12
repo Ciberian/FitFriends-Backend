@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 
 type PopularTrainingProps = {
   popularTraining: ITraining;
+  isForIndexPage?: boolean;
 };
 
-function PopularTraining({ popularTraining }: PopularTrainingProps): JSX.Element {
+function PopularTraining({ popularTraining, isForIndexPage }: PopularTrainingProps): JSX.Element {
   const { title, image, type, description, caloriesToLose, price, rating } = popularTraining;
 
   return (
-    <li className="popular-trainings__item">
+    <li className={`${isForIndexPage ? 'popular-trainings__item' : 'user-card-coach__training-item'}`}>
       <div className="thumbnail-training">
         <div className="thumbnail-training__inner">
           <div className="thumbnail-training__image">

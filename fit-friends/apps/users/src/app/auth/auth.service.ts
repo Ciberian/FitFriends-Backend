@@ -116,7 +116,7 @@ export class AuthService {
       ...user,
       level: dto.level,
       trainingType: dto.trainingType,
-      certificate: (dto as CreateTrainerDto).certificate,
+      certificates: (dto as CreateTrainerDto).certificates,
       merits: (dto as CreateTrainerDto).merits,
       personalTraining: (dto as CreateTrainerDto).personalTraining,
     };

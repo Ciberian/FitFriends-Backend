@@ -103,11 +103,10 @@ export class ClientRdo {
   @ApiProperty({
     description: 'Training type',
     example: 'Кроссфит',
-    enum: TrainingType,
     required: true,
   })
   @Expose()
-  public trainingType!: TrainingType;
+  public trainingType!: TrainingType[];
 
   @ApiProperty({
     description: 'Training duration',

@@ -27,7 +27,7 @@ export class ClientEntity implements IClient {
   public alerts?: IAlert[];
   public registrationDate?: Date;
   public level: UserLevel;
-  public trainingType: TrainingType;
+  public trainingType: TrainingType[];
   public trainingDuration: TrainingDuration;
   public caloriesToLose: number;
   public caloriesToLosePerDay: number;

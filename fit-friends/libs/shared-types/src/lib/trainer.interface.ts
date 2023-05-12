@@ -4,8 +4,8 @@ import { IUser } from './user.interface';
 
 export interface ITrainer extends IUser {
   level: UserLevel;
-  trainingType: TrainingType;
-  certificate: string;
+  trainingType: TrainingType[];
+  certificates: string[];
   merits: string;
   personalTraining: boolean;
 }

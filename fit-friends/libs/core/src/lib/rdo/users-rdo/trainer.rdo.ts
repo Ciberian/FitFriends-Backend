@@ -100,23 +100,22 @@ export class TrainerRdo {
   @ApiProperty({
     description: 'Training type',
     example: 'Кроссфит',
-    enum: TrainingType,
     required: true,
   })
   @Expose()
-  public trainingType: TrainingType;
+  public trainingType: TrainingType[];
 
   @ApiProperty({
-    description: 'Trainer certificate',
-    example: 'certificate.pdf',
+    description: 'Trainer certificates',
+    example: ['certificate.pdf'],
     required: true,
   })
   @Expose()
-  public certificate!: string;
+  public certificates!: string[];
 
   @ApiProperty({
     description: 'Trainer merits',
-    example: 'certificate.pdf',
+    example: 'Персональный тренер и инструктор групповых программ с опытом  более 4х лет.',
     required: true,
   })
   @Expose()

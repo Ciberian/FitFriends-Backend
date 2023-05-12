@@ -90,14 +90,13 @@ export class TrainerModel extends Document implements ITrainer {
   @Prop({
     required: true,
     type: String,
-    enum: TrainingType
   })
-  public trainingType: TrainingType;
+  public trainingType: TrainingType[];
 
   @Prop({
     required: true
   })
-  public certificate: string;
+  public certificates: string[];
 
   @Prop({
     required: true

@@ -92,9 +92,8 @@ export class ClientModel extends Document implements IClient {
   @Prop({
     required: true,
     type: String,
-    enum: TrainingType
   })
-  public trainingType: TrainingType;
+  public trainingType: TrainingType[];
 
   @Prop({
     required: true,

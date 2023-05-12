@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom';
 import { ITraining } from '@fit-friends/shared-types';
 
-type MyTrainingItemProps = {
+type TrainingItemProps = {
   training: ITraining;
+  isForCatalog?: boolean;
 };
 
-function MyTrainingItem({ training }: MyTrainingItemProps): JSX.Element {
+function TrainingItem({ training, isForCatalog }: TrainingItemProps): JSX.Element {
   const { title, image, type, caloriesToLose, description, price, rating } = training;
 
   return (
-    <li className="my-trainings__item">
+    <li className={`${isForCatalog ? 'training-catalog__item' : 'my-trainings__item'}`}>
       <div className="thumbnail-training">
         <div className="thumbnail-training__inner">
           <div className="thumbnail-training__image">
@@ -79,4 +80,4 @@ function MyTrainingItem({ training }: MyTrainingItemProps): JSX.Element {
   );
 }
 
-export default MyTrainingItem;
+export default TrainingItem;

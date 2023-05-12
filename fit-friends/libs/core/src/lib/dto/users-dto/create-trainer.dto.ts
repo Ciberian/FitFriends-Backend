@@ -7,6 +7,7 @@ import {
   Length,
   IsEnum,
   IsBoolean,
+  IsIn,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { UsersErrorMessage } from '../../constants/users.constants';
@@ -104,19 +105,18 @@ export class CreateTrainerDto {
   @ApiProperty({
     description: 'Training type',
     example: 'Кроссфит',
-    enum: TrainingType,
     required: true,
   })
-  @IsEnum(TrainingType)
-  public trainingType!: TrainingType;
+  @IsIn([ 'Йога', 'Бег', 'Бокс', 'Стрейчинг', 'Кроссфит', 'Аэробика', 'Пилатес'])
+  public trainingType!: TrainingType[];
 
   @ApiProperty({
-    description: 'Trainer certificate',
-    example: 'certificate.pdf',
+    description: 'Trainer certificates',
+    example: ['certificate.pdf'],
     required: true,
   })
   @IsString()
-  public certificate!: string;
+  public certificates!: string[];
 
   @ApiProperty({
     description: 'Trainer merits',

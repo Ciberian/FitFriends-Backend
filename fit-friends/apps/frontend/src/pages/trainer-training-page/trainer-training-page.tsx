@@ -6,9 +6,7 @@ type TrainerTrainingPageProps = {
   training: ITraining;
 };
 
-function TrainerTrainingPage({
-  training,
-}: TrainerTrainingPageProps): JSX.Element {
+function TrainerTrainingPage({ training }: TrainerTrainingPageProps): JSX.Element {
   const {
     title,
     type,

@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { OrderType, PaymentMethod, TrainingDuration, TrainingType, UserGender, UserLevel, UserRole } from '@fit-friends/shared-types';
+import { OrderType, PaymentMethod, TrainingDuration, UserGender, UserLevel, UserRole } from '@fit-friends/shared-types';
 
 export const ENV_FILE_PATH = 'environments/.trainings.env';
 export const RABBITMQ_SERVICE = Symbol('RABBITMQ_SERVICE');
@@ -75,7 +75,7 @@ export const TrainingsTest = {
     title: "Power",
     image: "power.png",
     level: UserLevel.Professional,
-    type: TrainingType.Crossfit,
+    type: "Бег",
     duration: TrainingDuration.LessAnHour,
     gender: UserGender.Male,
     caloriesToLose: 4130,

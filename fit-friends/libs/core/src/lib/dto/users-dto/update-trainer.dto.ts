@@ -6,6 +6,7 @@ import {
   Length,
   IsEnum,
   IsBoolean,
+  IsIn,
 } from 'class-validator';
 import {
   UserLevel,
@@ -92,11 +93,10 @@ export class UpdateTrainerDto {
   @ApiProperty({
     description: 'Training type',
     example: 'Кроссфит',
-    enum: TrainingType,
   })
   @IsOptional()
-  @IsEnum(TrainingType)
-  public trainingType?: TrainingType;
+  @IsIn([ 'Йога', 'Бег', 'Бокс', 'Стрейчинг', 'Кроссфит', 'Аэробика', 'Пилатес'])
+  public trainingType?: TrainingType[];
 
   @ApiProperty({
     description: 'Trainer certificate',

@@ -9,6 +9,7 @@ import {
   Min,
   Max,
   IsBoolean,
+  IsIn,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { UsersErrorMessage } from '../../constants/users.constants';
@@ -97,11 +98,10 @@ export class UpdateClientDto {
   @ApiProperty({
     description: 'Training type',
     example: 'Кроссфит',
-    enum: TrainingType,
   })
   @IsOptional()
-  @IsEnum(TrainingType)
-  public trainingType?: TrainingType;
+  @IsIn([ 'Йога', 'Бег', 'Бокс', 'Стрейчинг', 'Кроссфит', 'Аэробика', 'Пилатес'])
+  public trainingType?: TrainingType[];
 
   @ApiProperty({
     description: 'Training duration',
