@@ -1,24 +1,21 @@
-import { ITraining } from '@fit-friends/shared-types';
+// import { ITraining } from '@fit-friends/shared-types';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import SiteHeader from '../../components/site-header/site-header';
 
-type TrainerTrainingPageProps = {
-  training: ITraining;
-};
+function TrainerTrainingPage(): JSX.Element {
 
-function TrainerTrainingPage({ training }: TrainerTrainingPageProps): JSX.Element {
-  const {
-    title,
-    type,
-    duration,
-    gender,
-    caloriesToLose,
-    description,
-    video,
-    price,
-    rating,
-    isSpecialOffer,
-  } = training;
+  // const {
+  //   title,
+  //   type,
+  //   duration,
+  //   gender,
+  //   caloriesToLose,
+  //   description,
+  //   video,
+  //   price,
+  //   rating,
+  //   isSpecialOffer,
+  // } = training;
 
   return (
     <div className="wrapper">
@@ -79,7 +76,7 @@ function TrainerTrainingPage({ training }: TrainerTrainingPageProps): JSX.Elemen
                       <span>Сохранить</span>
                     </button>
                   </div>
-                  <div className="training-info__main-content">
+                  {/* <div className="training-info__main-content">
                     <form action="#" method="get">
                       <div className="training-info__form-wrapper">
                         <div className="training-info__info-wrapper">
@@ -180,9 +177,9 @@ function TrainerTrainingPage({ training }: TrainerTrainingPageProps): JSX.Elemen
                         </div>
                       </div>
                     </form>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="training-video">
+                {/* <div className="training-video">
                   <h2 className="training-video__title">Видео</h2>
                   {video ? (
                     <>
@@ -232,7 +229,7 @@ function TrainerTrainingPage({ training }: TrainerTrainingPageProps): JSX.Elemen
                       </form>
                     </div>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

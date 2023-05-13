@@ -3,7 +3,7 @@ import SiteHeader from '../../components/site-header/site-header';
 import MyTrainingsList from '../../components/my-trainings-list/my-trainings-list';
 import GymsList from '../../components/gyms-list/gyms-list';
 
-function MyPurchases(): JSX.Element {
+function MyPurchasesPage(): JSX.Element {
   const [isTrainingListOn, setTrainingListOn] = useState(true);
 
   return (
@@ -77,4 +77,4 @@ function MyPurchases(): JSX.Element {
   );
 }
 
-export default MyPurchases;
+export default MyPurchasesPage;

@@ -1,0 +1,33 @@
+.spinner-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	background-color: #f5f5f5;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(180deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.spinner div {
+	animation: spinner 1s linear infinite;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	box-shadow: 0 6.4px 0 0 #4481c3;
+	transform-origin: 50px 50px;
+}

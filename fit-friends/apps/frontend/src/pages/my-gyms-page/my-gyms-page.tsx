@@ -1,7 +1,7 @@
 import GymsList from '../../components/gyms-list/gyms-list';
 import SiteHeader from '../../components/site-header/site-header';
 
-function MyGyms(): JSX.Element {
+function MyGymsPage(): JSX.Element {
   return (
     <div className="wrapper">
       <SiteHeader />
@@ -34,4 +34,4 @@ function MyGyms(): JSX.Element {
   );
 }
 
-export default MyGyms;
+export default MyGymsPage;

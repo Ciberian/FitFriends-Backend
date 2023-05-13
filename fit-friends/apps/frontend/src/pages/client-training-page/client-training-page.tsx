@@ -1,23 +1,20 @@
-import { ITraining } from '@fit-friends/shared-types';
+// import { ITraining } from '@fit-friends/shared-types';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import SiteHeader from '../../components/site-header/site-header';
 
-type ClientTrainingPageProps = {
-  training: ITraining;
-};
+function ClientTrainingPage(): JSX.Element {
 
-function ClientTrainingPage({ training }: ClientTrainingPageProps): JSX.Element {
-  const {
-    title,
-    type,
-    duration,
-    gender,
-    caloriesToLose,
-    description,
-    video,
-    price,
-    rating,
-  } = training;
+  // const {
+  //   title,
+  //   type,
+  //   duration,
+  //   gender,
+  //   caloriesToLose,
+  //   description,
+  //   video,
+  //   price,
+  //   rating,
+  // } = training;
 
   return (
     <div className="wrapper">
@@ -64,7 +61,7 @@ function ClientTrainingPage({ training }: ClientTrainingPageProps): JSX.Element 
                       </div>
                     </div>
                   </div>
-                  <div className="training-info__main-content">
+                  {/* <div className="training-info__main-content">
                     <form action="#" method="get">
                       <div className="training-info__form-wrapper">
                         <div className="training-info__info-wrapper">
@@ -163,9 +160,9 @@ function ClientTrainingPage({ training }: ClientTrainingPageProps): JSX.Element 
                         </div>
                       </div>
                     </form>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="training-video">
+                {/* <div className="training-video">
                   <h2 className="training-video__title">Видео</h2>
                   <div className="training-video__video">
                     <div className="training-video__thumbnail">
@@ -192,7 +189,7 @@ function ClientTrainingPage({ training }: ClientTrainingPageProps): JSX.Element 
                       Закончить
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

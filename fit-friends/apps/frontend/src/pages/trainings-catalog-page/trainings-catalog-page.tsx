@@ -1,7 +1,7 @@
 import SiteHeader from '../../components/site-header/site-header';
-import TrainingCatalog from '../../components/training-catalog/training-catalog';
+import TrainingsCatalog from '../../components/training-catalog/training-catalog';
 
-function TrainingCatalogPage(): JSX.Element {
+function TrainingsCatalogPage(): JSX.Element {
   return (
     <div className="wrapper">
       <SiteHeader />
@@ -178,7 +178,7 @@ function TrainingCatalogPage(): JSX.Element {
                   </form>
                 </div>
               </div>
-              <TrainingCatalog trainings={[]} />
+              <TrainingsCatalog trainings={[]} />
             </div>
           </div>
         </section>
@@ -187,4 +187,4 @@ function TrainingCatalogPage(): JSX.Element {
   );
 }
 
-export default TrainingCatalogPage;
+export default TrainingsCatalogPage;

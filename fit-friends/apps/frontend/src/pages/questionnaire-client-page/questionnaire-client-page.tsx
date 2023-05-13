@@ -1,4 +1,4 @@
-function QuestionnaireUserPage(): JSX.Element {
+function QuestionnaireClientPage(): JSX.Element {
   return (
     <div className="wrapper">
       <main>
@@ -255,4 +255,4 @@ function QuestionnaireUserPage(): JSX.Element {
   );
 }
 
-export default QuestionnaireUserPage;
+export default QuestionnaireClientPage;

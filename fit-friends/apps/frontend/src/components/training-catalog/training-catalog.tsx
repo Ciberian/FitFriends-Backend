@@ -1,11 +1,11 @@
 import { ITraining } from '@fit-friends/shared-types';
 import TrainingItem from '../training-item/training-item';
 
-type MyTrainingCatalogProps = {
+type TrainingsCatalogProps = {
   trainings: ITraining[];
 };
 
-function TrainingCatalog({ trainings }: MyTrainingCatalogProps): JSX.Element {
+function TrainingsCatalog({ trainings }: TrainingsCatalogProps): JSX.Element {
   return (
     <div className="training-catalog">
       <ul className="training-catalog__list">
@@ -31,4 +31,4 @@ function TrainingCatalog({ trainings }: MyTrainingCatalogProps): JSX.Element {
   );
 }
 
-export default TrainingCatalog;
+export default TrainingsCatalog;

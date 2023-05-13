@@ -1,4 +1,4 @@
-function QuestionnaireCoachPage(): JSX.Element {
+function QuestionnaireTrainerPage(): JSX.Element {
   return (
     <div className="wrapper">
       <main>
@@ -119,4 +119,4 @@ function QuestionnaireCoachPage(): JSX.Element {
   );
 }
 
-export default QuestionnaireCoachPage;
+export default QuestionnaireTrainerPage;

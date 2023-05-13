@@ -1,7 +1,7 @@
 import SiteHeader from '../../components/site-header/site-header';
 import UsersCatalogList from '../../components/users-catalog-list/users-catalog-list';
 
-function UsersCatalog(): JSX.Element {
+function UsersCatalogPage(): JSX.Element {
   return (
     <div className="wrapper">
       <SiteHeader />
@@ -185,4 +185,4 @@ function UsersCatalog(): JSX.Element {
   );
 }
 
-export default UsersCatalog;
+export default UsersCatalogPage;
