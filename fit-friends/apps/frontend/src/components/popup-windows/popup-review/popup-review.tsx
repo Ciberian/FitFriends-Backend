@@ -1,4 +1,8 @@
-function PopupReview(): JSX.Element {
+type PopupReviewProps = {
+  setPopupVisible: () => void;
+};
+
+function PopupReview({ setPopupVisible }: PopupReviewProps): JSX.Element {
   return (
     <div className="wrapper">
       <main>
@@ -11,6 +15,7 @@ function PopupReview(): JSX.Element {
                   className="btn-icon btn-icon--outlined btn-icon--big"
                   type="button"
                   aria-label="close"
+                  onClick={setPopupVisible}
                 >
                   <svg width="20" height="20" aria-hidden="true">
                     <use xlinkHref="#icon-cross"></use>

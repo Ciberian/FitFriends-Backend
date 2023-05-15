@@ -4,9 +4,10 @@ import ReviewItem from '../review-item/review-item';
 type ReviewsListProps = {
   reviews: IReview[];
   isForTrainer?: boolean;
+  setPopupVisible: () => void;
 };
 
-function ReviewsList({ reviews, isForTrainer }: ReviewsListProps): JSX.Element {
+function ReviewsList({ reviews, isForTrainer, setPopupVisible }: ReviewsListProps): JSX.Element {
   return (
     <>
       <h2 className="reviews-side-bar__title">Отзывы</h2>
@@ -19,6 +20,7 @@ function ReviewsList({ reviews, isForTrainer }: ReviewsListProps): JSX.Element {
         className="btn btn--medium reviews-side-bar__button"
         type="button"
         disabled={isForTrainer}
+        onClick={setPopupVisible}
       >
         Оставить отзыв
       </button>

@@ -1,4 +1,7 @@
 // import { ITraining } from '@fit-friends/shared-types';
+import { useEffect, useRef, useState } from 'react';
+// import PopupBuy from '../../components/popup-windows/popup-buy/popup-buy';
+import PopupReview from '../../components/popup-windows/popup-review/popup-review';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import SiteHeader from '../../components/site-header/site-header';
 
@@ -15,6 +18,56 @@ function ClientTrainingPage(): JSX.Element {
   //   price,
   //   rating,
   // } = training;
+
+  const isFirstRun = useRef(true);
+  const [isVisibleBuyPopup, setVisibleBuyPopup] = useState(false);
+  const [isVisibleReviewPopup, setVisibleReviewPopup] = useState(false);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    const onKeyDownEsc = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        setVisibleBuyPopup((prevState) => !prevState);
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDownEsc);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDownEsc);
+    };
+
+  }, [isVisibleBuyPopup])
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    const onKeyDownEsc = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        setVisibleReviewPopup((prevState) => !prevState);
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDownEsc);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDownEsc);
+    };
+
+  }, [isVisibleReviewPopup])
+
+  const setReviewPopupVisible = () => {
+    setVisibleReviewPopup((prevState) => !prevState)
+  }
 
   return (
     <div className="wrapper">
@@ -34,7 +87,7 @@ function ClientTrainingPage(): JSX.Element {
                   </svg>
                   <span>Назад</span>
                 </button>
-                <ReviewsList reviews={[]} />
+                <ReviewsList reviews={[]} setPopupVisible={setReviewPopupVisible} />
               </aside>
               <div className="training-card">
                 <div className="training-info">
@@ -154,6 +207,7 @@ function ClientTrainingPage(): JSX.Element {
                           <button
                             className="btn training-info__buy"
                             type="button"
+                            onClick={() => setVisibleBuyPopup((prevState) => !prevState)}
                           >
                             Купить
                           </button>
@@ -195,6 +249,8 @@ function ClientTrainingPage(): JSX.Element {
           </div>
         </section>
       </main>
+      {/* {isVisibleBuyPopup && <PopupBuy training={training}/>} */}
+      {isVisibleReviewPopup && <PopupReview setPopupVisible={setReviewPopupVisible} />}
     </div>
   );
 }
