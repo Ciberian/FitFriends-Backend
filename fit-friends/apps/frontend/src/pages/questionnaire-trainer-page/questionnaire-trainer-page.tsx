@@ -1,4 +1,20 @@
+import { FormEvent } from 'react';
+import { useLocation } from 'react-router-dom';
+
 function QuestionnaireTrainerPage(): JSX.Element {
+  const location = useLocation();
+  const prevFormData = location.state;
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target as HTMLFormElement);
+
+    for (const [key, value] of prevFormData.entries()) {
+      formData.append(key, value);
+    }
+  };
+
   return (
     <div className="wrapper">
       <main>
@@ -14,7 +30,7 @@ function QuestionnaireTrainerPage(): JSX.Element {
           <div className="popup-form__wrapper">
             <div className="popup-form__content">
               <div className="popup-form__form">
-                <form method="get">
+                <form method="get" onSubmit={handleSubmit}>
                   <div className="questionnaire-coach">
                     <h1 className="visually-hidden">Опросник</h1>
                     <div className="questionnaire-coach__wrapper">

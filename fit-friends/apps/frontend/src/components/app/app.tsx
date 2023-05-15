@@ -28,12 +28,15 @@ import TrainingsCatalogPage from '../../pages/trainings-catalog-page/trainings-c
 import UsersCatalogPage from '../../pages/users-catalog-page/users-catalog-page';
 import ClientCardPage from '../../pages/client-card-page/client-card-page';
 import TrainerCardPage from '../../pages/trainer-card-page/trainer-card-page';
+import { UserRole } from '@fit-friends/shared-types';
 
 export function App() {
   // const authorizationStatus = useAppSelector(getAuthorizationStatus);
   // const isDataLoaded = useAppSelector(getLoadedDataStatus);
+  // const user = useAppSelector(getUser);
   const authorizationStatus = 'AUTH'; // временный вариант
   const isDataLoaded = false; // временный вариант
+  const user = {role: UserRole.Client}
 
   if (!isDataLoaded) {
     return (
@@ -54,7 +57,7 @@ export function App() {
           index
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
-              <IndexPage />
+              {(user.role === UserRole.Client) ? <IndexPage /> : <Navigate to={AppRoute.TrainerPersonalAccount} />}
             </PrivateRoute>
           }
         />

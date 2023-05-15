@@ -6,7 +6,7 @@ export enum ResponseValue {
 
 export enum AppRoute {
   Root = '/',
-  Intro = '/intro',
+  Intro = 'intro',
   SignIn = 'sign-in',
   SignUp = 'sign-up',
   QuestionnaireClient = 'questionnaire-client',

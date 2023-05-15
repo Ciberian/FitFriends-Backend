@@ -1,4 +1,21 @@
+import { FormEvent } from 'react';
+import { Navigate } from 'react-router-dom';
+import { AppRoute } from '../../constants';
+
 function SignUpPage(): JSX.Element {
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target as HTMLFormElement);
+
+    if (formData.get('role') === 'client') {
+      <Navigate to={AppRoute.QuestionnaireClient} state={formData} />
+    } else {
+      <Navigate to={AppRoute.QuestionnaireTrainer} state={formData} />
+    }
+  };
+
   return (
     <div className="wrapper">
       <main>
@@ -27,7 +44,7 @@ function SignUpPage(): JSX.Element {
                 <h1 className="popup-form__title">Регистрация</h1>
               </div>
               <div className="popup-form__form">
-                <form method="get">
+                <form method="get" onSubmit={handleSubmit} >
                   <div className="sign-up">
                     <div className="sign-up__load-photo">
                       <div className="input-load-avatar">
@@ -119,7 +136,7 @@ function SignUpPage(): JSX.Element {
                         <div className="custom-toggle-radio custom-toggle-radio--big">
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" />
+                              <input type="radio" name="sex" value='male' />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Мужской
@@ -128,7 +145,7 @@ function SignUpPage(): JSX.Element {
                           </div>
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" checked />
+                              <input type="radio" name="sex" value='female' defaultChecked />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Женский
@@ -137,7 +154,7 @@ function SignUpPage(): JSX.Element {
                           </div>
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" />
+                              <input type="radio" name="sex" value='irrelevant' />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Неважно
@@ -156,7 +173,7 @@ function SignUpPage(): JSX.Element {
                               className="visually-hidden"
                               type="radio"
                               name="role"
-                              value="coach"
+                              value="trainer"
                               defaultChecked
                             />
                             <span className="role-btn__icon">
@@ -175,7 +192,7 @@ function SignUpPage(): JSX.Element {
                               className="visually-hidden"
                               type="radio"
                               name="role"
-                              value="sportsman"
+                              value="client"
                             />
                             <span className="role-btn__icon">
                               <svg width="12" height="13" aria-hidden="true">
