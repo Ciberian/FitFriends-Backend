@@ -1,4 +1,6 @@
-import { IClient, ITrainer, UserRole } from '@fit-friends/shared-types';
+import { IClient } from '../../../../../../libs/shared-types/src/lib/client.interface';
+import { ITrainer } from '../../../../../../libs/shared-types/src/lib/trainer.interface';
+import { UserRole } from '../../../../../../libs/shared-types/src/lib/enums/user-role.enum';
 import { Link } from 'react-router-dom';
 
 type UserItemProp = {

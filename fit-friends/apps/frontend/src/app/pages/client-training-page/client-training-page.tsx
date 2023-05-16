@@ -1,4 +1,4 @@
-// import { ITraining } from '@fit-friends/shared-types';
+// import { ITraining } from '../../../../../../libs/shared-types/src/lib/training.interface';
 import { useEffect, useRef, useState } from 'react';
 // import PopupBuy from '../../components/popup-windows/popup-buy/popup-buy';
 import PopupReview from '../../components/popup-windows/popup-review/popup-review';

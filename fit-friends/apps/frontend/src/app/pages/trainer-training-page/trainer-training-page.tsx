@@ -1,4 +1,4 @@
-// import { ITraining } from '@fit-friends/shared-types';
+// import { ITraining } from '../../../../../../libs/shared-types/src/lib/training.interface';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import SiteHeader from '../../components/site-header/site-header';
 

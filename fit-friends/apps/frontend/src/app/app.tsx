@@ -1,4 +1,4 @@
-import { UserRole } from '@fit-friends/shared-types';
+import { UserRole } from '../../../../libs/shared-types/src/lib/enums/user-role.enum';
 import { AppRoute } from './utils/constants';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/private-route/private-route';
@@ -34,9 +34,9 @@ export function App() {
   // const authorizationStatus = useAppSelector(getAuthorizationStatus);
   // const isDataLoaded = useAppSelector(getLoadedDataStatus);
   // const user = useAppSelector(getUser);
+  const isDataLoaded = true; // временный вариант
   const authorizationStatus = 'AUTH'; // временный вариант
-  const isDataLoaded = false; // временный вариант
-  const user = { role: UserRole.Client };
+  const user = { role: UserRole.Client }; // временный вариант
 
   if (!isDataLoaded) {
     return <LoadingScreen />;
@@ -48,16 +48,9 @@ export function App() {
         <Route path={AppRoute.Intro} element={<IntroPage />} />
         <Route path={AppRoute.SignIn} element={<SignInPage />} />
         <Route path={AppRoute.SignUp} element={<SignUpPage />} />
-        <Route
-          path={AppRoute.QuestionnaireClient}
-          element={<QuestionnaireClientPage />}
-        />
-        <Route
-          path={AppRoute.QuestionnaireTrainer}
-          element={<QuestionnaireTrainerPage />}
-        />
-
-        <Route
+        <Route path={AppRoute.QuestionnaireClient} element={<QuestionnaireClientPage />} />
+        <Route path={AppRoute.QuestionnaireTrainer} element={<QuestionnaireTrainerPage />} />
+      <Route
           index
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
@@ -70,7 +63,7 @@ export function App() {
           }
         />
 
-        <Route
+      <Route
           path={AppRoute.TrainerPersonalAccount}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>

@@ -1,5 +1,6 @@
 import { ResponseValue } from '../../utils/constants';
-import { ITrainer, UserGender } from '@fit-friends/shared-types';
+import { ITrainer } from '../../../../../../libs/shared-types/src/lib/trainer.interface';
+import { UserGender } from '../../../../../../libs/shared-types/src/lib/enums/user-gender.enum';
 import RequestTraining from '../request-training/request-training';
 import RequestFriendship from '../request-friendship/request-friendship';
 import RequestTrainingResponse from '../request-training-response/request-training-response';

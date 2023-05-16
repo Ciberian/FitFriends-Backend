@@ -1,4 +1,5 @@
-import { IClient, ITrainer } from '@fit-friends/shared-types';
+import { IClient } from '../../../../../../libs/shared-types/src/lib/client.interface';
+import { ITrainer } from '../../../../../../libs/shared-types/src/lib/trainer.interface';
 import UserItem from '../user-item/user-item';
 
 type UsersCatalogListProp = {
