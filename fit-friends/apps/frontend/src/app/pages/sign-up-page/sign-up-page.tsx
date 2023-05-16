@@ -1,6 +1,6 @@
 import { FormEvent } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AppRoute } from '../../constants';
+import { AppRoute } from '../../utils/constants';
 
 function SignUpPage(): JSX.Element {
 

@@ -1,6 +1,5 @@
 import { ITraining } from '@fit-friends/shared-types';
 
-
 const DISCOUNT_RATE = 0.8;
 
 type SpecialTrainingProps = {

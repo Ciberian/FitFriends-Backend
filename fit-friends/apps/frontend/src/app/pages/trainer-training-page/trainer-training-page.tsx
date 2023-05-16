@@ -35,7 +35,9 @@ function TrainerTrainingPage(): JSX.Element {
                   </svg>
                   <span>Назад</span>
                 </button>
-                <ReviewsList reviews={[]} isForTrainer />
+                <ReviewsList reviews={[]} isForTrainer setPopupVisible={function (): void {
+                  throw new Error('Function not implemented.');
+                }} />
               </aside>
               <div className="training-card training-card--edit">
                 <div className="training-info">

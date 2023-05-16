@@ -1,4 +1,4 @@
-import { ResponseValue } from '../../constants';
+import { ResponseValue } from '../../utils/constants';
 
 type RequestTrainingResponseProps = {
   response: ResponseValue;

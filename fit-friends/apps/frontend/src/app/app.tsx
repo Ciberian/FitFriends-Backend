@@ -1,34 +1,34 @@
-import { AppRoute } from '../../constants';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import PrivateRoute from '../private-route/private-route';
-import IndexPage from '../../pages/index-page/index-page';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
-import TrainerPersonalAccountPage from '../../pages/trainer-personal-account-page/trainer-personal-account-page';
-import LoadingScreen from '../loading-screen/loading-screen';
-import IntroPage from '../../pages/intro-page/intro-page';
-import SignInPage from '../../pages/sign-in-page/sign-in-page';
-import SignUpPage from '../../pages/sign-up-page/sign-up-page';
-import QuestionnaireClientPage from '../../pages/questionnaire-client-page/questionnaire-client-page';
-import QuestionnaireTrainerPage from '../../pages/questionnaire-trainer-page/questionnaire-trainer-page';
-import CreateTrainingPage from '../../pages/create-training-page/create-training-page';
-import MyTrainingsPage from '../../pages/my-trainings-page/my-trainings-page';
-import MyOrdersPage from '../../pages/my-orders-page/my-orders-page';
-import TrainerFriendsPage from '../../pages/trainer-friends-page/trainer-friends-page';
-import TrainerTrainingPage from '../../pages/trainer-training-page/trainer-training-page';
-import ClientPersonalAccountPage from '../../pages/client-personal-account-page/client-personal-account-page';
-import MyPurchasesPage from '../../pages/my-purchases-page/my-purchases-page';
-import MyGymsPage from '../../pages/my-gyms-page/my-gyms-page';
-import TrainingDiaryPage from '../../pages/training-diary-page/training-diary-page';
-import NutritionDiaryPage from '../../pages/nutrition-diary-page/nutrition-diary-page';
-import ClientFriendsPage from '../../pages/client-friends-page/client-friends-page';
-import ClientTrainingPage from '../../pages/client-training-page/client-training-page';
-import GymsCatalogPage from '../../pages/gyms-catalog-page/gyms-catalog-page';
-import GymCardPage from '../../pages/gym-card-page/gym-card-page';
-import TrainingsCatalogPage from '../../pages/trainings-catalog-page/trainings-catalog-page';
-import UsersCatalogPage from '../../pages/users-catalog-page/users-catalog-page';
-import ClientCardPage from '../../pages/client-card-page/client-card-page';
-import TrainerCardPage from '../../pages/trainer-card-page/trainer-card-page';
 import { UserRole } from '@fit-friends/shared-types';
+import { AppRoute } from './utils/constants';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import PrivateRoute from './components/private-route/private-route';
+import LoadingScreen from './components/loading-screen/loading-screen';
+import IntroPage from './pages/intro-page/intro-page';
+import SignInPage from './pages/sign-in-page/sign-in-page';
+import SignUpPage from './pages/sign-up-page/sign-up-page';
+import QuestionnaireClientPage from './pages/questionnaire-client-page/questionnaire-client-page';
+import QuestionnaireTrainerPage from './pages/questionnaire-trainer-page/questionnaire-trainer-page';
+import IndexPage from './pages/index-page/index-page';
+import TrainerPersonalAccountPage from './pages/trainer-personal-account-page/trainer-personal-account-page';
+import CreateTrainingPage from './pages/create-training-page/create-training-page';
+import MyTrainingsPage from './pages/my-trainings-page/my-trainings-page';
+import MyOrdersPage from './pages/my-orders-page/my-orders-page';
+import TrainerFriendsPage from './pages/trainer-friends-page/trainer-friends-page';
+import TrainerTrainingPage from './pages/trainer-training-page/trainer-training-page';
+import ClientPersonalAccountPage from './pages/client-personal-account-page/client-personal-account-page';
+import MyPurchasesPage from './pages/my-purchases-page/my-purchases-page';
+import MyGymsPage from './pages/my-gyms-page/my-gyms-page';
+import TrainingDiaryPage from './pages/training-diary-page/training-diary-page';
+import NutritionDiaryPage from './pages/nutrition-diary-page/nutrition-diary-page';
+import ClientFriendsPage from './pages/client-friends-page/client-friends-page';
+import ClientTrainingPage from './pages/client-training-page/client-training-page';
+import GymsCatalogPage from './pages/gyms-catalog-page/gyms-catalog-page';
+import GymCardPage from './pages/gym-card-page/gym-card-page';
+import TrainingsCatalogPage from './pages/trainings-catalog-page/trainings-catalog-page';
+import UsersCatalogPage from './pages/users-catalog-page/users-catalog-page';
+import ClientCardPage from './pages/client-card-page/client-card-page';
+import TrainerCardPage from './pages/trainer-card-page/trainer-card-page';
+import NotFoundPage from './pages/not-found-page/not-found-page';
 
 export function App() {
   // const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -36,12 +36,10 @@ export function App() {
   // const user = useAppSelector(getUser);
   const authorizationStatus = 'AUTH'; // временный вариант
   const isDataLoaded = false; // временный вариант
-  const user = {role: UserRole.Client}
+  const user = { role: UserRole.Client };
 
   if (!isDataLoaded) {
-    return (
-      <LoadingScreen />
-    );
+    return <LoadingScreen />;
   }
 
   return (
@@ -50,14 +48,24 @@ export function App() {
         <Route path={AppRoute.Intro} element={<IntroPage />} />
         <Route path={AppRoute.SignIn} element={<SignInPage />} />
         <Route path={AppRoute.SignUp} element={<SignUpPage />} />
-        <Route path={AppRoute.QuestionnaireClient} element={<QuestionnaireClientPage />} />
-        <Route path={AppRoute.QuestionnaireTrainer} element={<QuestionnaireTrainerPage />} />
+        <Route
+          path={AppRoute.QuestionnaireClient}
+          element={<QuestionnaireClientPage />}
+        />
+        <Route
+          path={AppRoute.QuestionnaireTrainer}
+          element={<QuestionnaireTrainerPage />}
+        />
 
         <Route
           index
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
-              {(user.role === UserRole.Client) ? <IndexPage /> : <Navigate to={AppRoute.TrainerPersonalAccount} />}
+              {user.role === UserRole.Client ? (
+                <IndexPage />
+              ) : (
+                <Navigate to={AppRoute.TrainerPersonalAccount} />
+              )}
             </PrivateRoute>
           }
         />

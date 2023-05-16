@@ -1,21 +1,21 @@
-import { ResponseValue } from '../../constants';
-import { ITrainer, UserGender } from '@fit-friends/shared-types';
+import { ResponseValue } from '../../utils/constants';
+import { IClient, UserGender } from '@fit-friends/shared-types';
 import RequestTraining from '../request-training/request-training';
 import RequestFriendship from '../request-friendship/request-friendship';
 import RequestTrainingResponse from '../request-training-response/request-training-response';
 
-type FriendTrainerItemProps = {
-  trainer: ITrainer & { id: string };
+type FriendClientItemProps = {
+  client: IClient & { id: string };
   isForClientPage: boolean;
 };
 
-function FriendTrainerItem({ trainer, isForClientPage }: FriendTrainerItemProps): JSX.Element {
-  const { id, name, gender, location, avatar, trainingType, personalTraining } = trainer;
+function FriendClientItem({ client, isForClientPage }: FriendClientItemProps): JSX.Element {
+  const { id, name, gender, location, avatar, trainingType, readyToTraining } = client;
 
   return (
     <li className="friends-list__item">
       <div className="thumbnail-friend">
-        <div className="thumbnail-friend__info thumbnail-friend__info--theme-dark">
+        <div className="thumbnail-friend__info thumbnail-friend__info--theme-light">
           <div className="thumbnail-friend__image-status">
             <div className="thumbnail-friend__image">
               <img src={avatar} width="78" height="78" alt="avatar" />
@@ -42,20 +42,20 @@ function FriendTrainerItem({ trainer, isForClientPage }: FriendTrainerItemProps)
           </ul>
           <div className="thumbnail-friend__activity-bar">
             <div className="thumbnail-friend__ready-status thumbnail-friend__ready-status--is-ready">
-              {personalTraining ? (
+              {readyToTraining ? (
                 <span>
                   {gender === UserGender.Male ? 'Готов' : 'Готова'}{' '}
-                  к&nbsp;персональной тренировке
+                  к&nbsp;тренировке
                 </span>
               ) : (
                 <span>
                   Не {gender === UserGender.Male ? 'готов' : 'готова'}{' '}
-                  к&nbsp;персональной тренировке
+                  к&nbsp;тренировке
                 </span>
               )}
             </div>
             {isForClientPage && (
-              <button className="thumbnail-friend__invite-button" type="button" disabled={!personalTraining}>
+              <button className="thumbnail-friend__invite-button" type="button" disabled={!readyToTraining}>
                 <svg
                   width="43"
                   height="46"
@@ -81,4 +81,4 @@ function FriendTrainerItem({ trainer, isForClientPage }: FriendTrainerItemProps)
   );
 }
 
-export default FriendTrainerItem;
+export default FriendClientItem;
