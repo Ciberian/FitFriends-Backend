@@ -41,3 +41,10 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum NameSpace {
+  Trainings = 'TRAININGS',
+  Gyms = 'GYMS',
+  User = 'USER',
+  Error = 'ERROR',
+}
