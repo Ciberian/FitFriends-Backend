@@ -36,6 +36,15 @@ export enum AppRoute {
   NotFound = '/not-found',
 }
 
+export enum APIRoute {
+  Users = '/users',
+  Gyms = '/gyms',
+  Trainings = '/trainings',
+  Orders = '/orders',
+  Reviews = '/reviews',
+  Notify = '/notify/subscriber',
+}
+
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',

@@ -1,90 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace } from '../../const';
-import { OfferData } from '../../types/state';
-import {
-  fetchOfferAction,
-  fetchOffersAction,
-  fetchFavoriteOffersAction,
-  fetchNearbyOffersAction,
-  changeFavoriteOffersAction,
-  fetchReviewsAction,
-  fetchNewReviewAction} from '../api-actions';
+import { NameSpace } from '../../app/utils/constants';
+import { GymsData } from '../../types/state';
+import { fetchGymsAction } from '../api-actions';
 
-const initialState: OfferData = {
-  offers: [],
-  offer: null,
-  favoriteOffers: [],
-  nearbyOffers: [],
-  reviews: null,
+const initialState: GymsData = {
+  gyms: [],
   isDataLoaded: false,
-  isOfferLoaded: false,
 };
 
 export const gymsData = createSlice({
-  name: NameSpace.Data,
+  name: NameSpace.Gyms,
   initialState,
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchOffersAction.pending, (state) => {
+      .addCase(fetchGymsAction.pending, (state) => {
         state.isDataLoaded = false;
       })
-      .addCase(fetchOffersAction.fulfilled, (state, action) => {
-        state.offers = action.payload;
+      .addCase(fetchGymsAction.fulfilled, (state, action) => {
+        state.gyms = action.payload;
         state.isDataLoaded = true;
       })
-      .addCase(fetchOffersAction.rejected, (state) => {
+      .addCase(fetchGymsAction.rejected, (state) => {
         state.isDataLoaded = true;
-      })
-      .addCase(fetchOfferAction.pending, (state) => {
-        state.isOfferLoaded = false;
-      })
-      .addCase(fetchOfferAction.fulfilled, (state, action) => {
-        state.offer = action.payload;
-        state.isOfferLoaded = true;
-      })
-      .addCase(fetchOfferAction.rejected, (state) => {
-        state.isOfferLoaded = true;
-      })
-      .addCase(fetchNearbyOffersAction.fulfilled, (state, action) => {
-        state.nearbyOffers = action.payload;
-      })
-      .addCase(fetchReviewsAction.fulfilled, (state, action) => {
-        state.reviews = action.payload;
-      })
-      .addCase(fetchNewReviewAction.fulfilled, (state, action) => {
-        state.reviews = action.payload;
-      })
-      .addCase(fetchFavoriteOffersAction.fulfilled, (state, action) => {
-        state.favoriteOffers = action.payload;
-      })
-      .addCase(changeFavoriteOffersAction.fulfilled, (state, action) => {
-        const index = state.offers.findIndex((offer) => offer.id === action.payload.id);
-        state.offers = [
-          ...state.offers.slice(0, index),
-          action.payload,
-          ...state.offers.slice(index + 1)
-        ];
-
-        if (action.payload.isFavorite &&
-            !state.favoriteOffers.find((favoriteOffer) => favoriteOffer.id === action.payload.id)) {
-          state.favoriteOffers = [...state.favoriteOffers, action.payload];
-        } else {
-          state.favoriteOffers = state.favoriteOffers.filter((favoriteOffer) => favoriteOffer.id !== action.payload.id);
-        }
-
-        if (state.nearbyOffers.find((nearbyOffer) => nearbyOffer.id === action.payload.id)) {
-          const nearbyOfferIndex = state.nearbyOffers.findIndex((nearbyOffer) => nearbyOffer.id === action.payload.id);
-          state.nearbyOffers = [
-            ...state.nearbyOffers.slice(0, nearbyOfferIndex),
-            action.payload,
-            ...state.nearbyOffers.slice(nearbyOfferIndex + 1)
-          ];
-        }
-
-        if (state.offer?.id === action.payload.id) {
-          state.offer = {...state.offer, isFavorite: !state.offer.isFavorite};
-        }
       });
   }
 });

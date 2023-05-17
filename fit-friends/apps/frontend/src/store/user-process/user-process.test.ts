@@ -1,8 +1,8 @@
 import { userProcess } from './user-process';
 import { UserProcess } from '../../types/state';
-import { AuthorizationStatus } from '../../const';
-import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
-import { makeFakeUserInfo } from '../../utils/mocks';
+import { AuthorizationStatus } from '../../app/utils/constants';
+import { checkAuthAction, loginAction } from '../api-actions';
+import { makeFakeUserInfo } from '../../app/utils/mocks';
 
 const userInfo = makeFakeUserInfo();
 
@@ -36,13 +36,6 @@ describe('Reducer: userProcess', () => {
     });
     it('should update authorizationStatus to "NO_AUTH" if loginAction rejected', () => {
       expect(userProcess.reducer(state, { type: loginAction.rejected.type}))
-        .toEqual({authorizationStatus: AuthorizationStatus.NoAuth, userInfo: null});
-    });
-  });
-
-  describe('logoutAction test', () => {
-    it('should update authorizationStatus to "NO_AUTH" if logoutAction fulfilled', () => {
-      expect(userProcess.reducer(state, { type: logoutAction.fulfilled.type }))
         .toEqual({authorizationStatus: AuthorizationStatus.NoAuth, userInfo: null});
     });
   });

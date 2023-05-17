@@ -1,9 +1,8 @@
 import { StatusCodes } from 'http-status-codes';
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
-import { setError } from '../store/error-process/error-process';
-import { TIMEOUT_SHOW_ERROR } from '../const';
+import { setError } from '../../store/error-process/error-process';
 import { getToken } from './token';
-import { store } from '../store';
+import { store } from '../../store';
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,

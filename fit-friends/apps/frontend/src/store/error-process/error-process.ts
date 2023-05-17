@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CurrentError } from '../../types/state';
-import { NameSpace } from '../../const';
+import { NameSpace } from '../../app/utils/constants';
 
 const initialState: CurrentError = {
-  error: null
+  error: null,
 };
 
 export const errorProcess = createSlice({
