@@ -1,9 +1,9 @@
 import { StatusCodes } from 'http-status-codes';
 import axios, {
   AxiosInstance,
-  AxiosRequestConfig,
   AxiosResponse,
   AxiosError,
+  InternalAxiosRequestConfig,
 } from 'axios';
 import { setError } from '../../store/error-process/error-process';
 import { getAccessToken } from './tokens.service';
@@ -18,7 +18,7 @@ const StatusCodeMapping: Record<number, boolean> = {
 const shouldDisplayError = (response: AxiosResponse) =>
   !!StatusCodeMapping[response.status];
 
-const BACKEND_URL = 'https://10.react.pages.academy/six-cities';
+const BACKEND_URL = 'http://localhost:3344/api/';
 const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {
@@ -27,11 +27,11 @@ export const createAPI = (): AxiosInstance => {
     timeout: REQUEST_TIMEOUT,
   });
 
-  api.interceptors.request.use((config: AxiosRequestConfig) => {
+  api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
     const token = getAccessToken();
 
     if (token) {
-      config.headers['x-token'] = token;
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
@@ -41,8 +41,7 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError) => {
       if (error.response && shouldDisplayError(error.response)) {
-        store.dispatch(setError(error.response.data.error));
-        setTimeout(() => store.dispatch(setError(null)), TIMEOUT_SHOW_ERROR);
+        store.dispatch(setError(error.response));
       }
 
       throw error;

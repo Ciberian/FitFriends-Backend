@@ -8,7 +8,7 @@
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	background-color: #f5f5f5;
+	background-color: #6a6767;
 }
 
 @keyframes spinner {
@@ -28,6 +28,11 @@
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
-	box-shadow: 0 10px 0 0 #d5ff2d, 0 1px 0 0 #93a196;
+	box-shadow: 0 10px 0 0 #d5ff2d;
 	transform-origin: 50px 50px;
+}
+
+.spinner p {
+  color: #d5ff2d;
+  font-size: 25px;
 }

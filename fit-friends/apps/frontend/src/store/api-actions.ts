@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { saveToken } from '../app/services/tokens.service';
+import { saveAccessToken } from '../app/services/tokens.service';
 import { APIRoute } from '../app/utils/constants';
 import { ITraining } from '../../../../libs/shared-types/src/lib/training.interface';
 import { IGym } from '../../../../libs/shared-types/src/lib/gym.interface';
@@ -58,6 +58,6 @@ export const loginAction = createAsyncThunk<
     email,
     password,
   });
-  saveToken(data.accessToken);
+  saveAccessToken(data.accessToken);
   return data;
 });
