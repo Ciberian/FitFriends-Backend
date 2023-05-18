@@ -57,3 +57,15 @@ export enum NameSpace {
   User = 'USER',
   Error = 'ERROR',
 }
+
+export const CITY = {
+  title: 'Санкт-Петербург',
+  lat: 59.93863,
+  lng: 30.31413,
+  zoom: 10,
+};
+
+export type CityType = typeof CITY;
+
+export const USER_MAP_PIN = 'assets/img/svg/user-pin.svg';
+export const GYM_MAP_PIN = 'assets/img/svg/gym-pin.svg';

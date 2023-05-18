@@ -6,7 +6,6 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import SiteHeader from '../../components/site-header/site-header';
 
 function ClientTrainingPage(): JSX.Element {
-
   // const {
   //   title,
   //   type,
@@ -34,15 +33,14 @@ function ClientTrainingPage(): JSX.Element {
         evt.preventDefault();
         setVisibleBuyPopup((prevState) => !prevState);
       }
-    }
+    };
 
     document.addEventListener('keydown', onKeyDownEsc);
 
     return () => {
       document.removeEventListener('keydown', onKeyDownEsc);
     };
-
-  }, [isVisibleBuyPopup])
+  }, [isVisibleBuyPopup]);
 
   useEffect(() => {
     if (isFirstRun.current) {
@@ -55,19 +53,18 @@ function ClientTrainingPage(): JSX.Element {
         evt.preventDefault();
         setVisibleReviewPopup((prevState) => !prevState);
       }
-    }
+    };
 
     document.addEventListener('keydown', onKeyDownEsc);
 
     return () => {
       document.removeEventListener('keydown', onKeyDownEsc);
     };
-
-  }, [isVisibleReviewPopup])
+  }, [isVisibleReviewPopup]);
 
   const setReviewPopupVisible = () => {
-    setVisibleReviewPopup((prevState) => !prevState)
-  }
+    setVisibleReviewPopup((prevState) => !prevState);
+  };
 
   return (
     <div className="wrapper">
@@ -87,7 +84,10 @@ function ClientTrainingPage(): JSX.Element {
                   </svg>
                   <span>Назад</span>
                 </button>
-                <ReviewsList reviews={[]} setPopupVisible={setReviewPopupVisible} />
+                <ReviewsList
+                  reviews={[]}
+                  setPopupVisible={setReviewPopupVisible}
+                />
               </aside>
               <div className="training-card">
                 <div className="training-info">

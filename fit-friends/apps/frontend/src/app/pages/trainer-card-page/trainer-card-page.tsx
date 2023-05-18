@@ -1,7 +1,36 @@
 import SiteHeader from '../../components/site-header/site-header';
 import PopularTraining from '../../components/popular-training/popular-training';
+import { useEffect, useRef, useState } from 'react';
+import PopupMap from '../../components/popup-windows/popup-map/popup-map';
 
 function TrainerCardPage(): JSX.Element {
+  const isFirstRun = useRef(true);
+  const [isVisibleMapPopup, setVisibleMapPopup] = useState(false);
+
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    const onKeyDownEsc = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        setVisibleMapPopup((prevState) => !prevState);
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDownEsc);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDownEsc);
+    };
+  }, [isVisibleMapPopup]);
+
+  const setMapPopupVisible = () => {
+    setVisibleMapPopup((prevState) => !prevState);
+  };
+
   return (
     <div className="wrapper">
       <SiteHeader />
@@ -159,7 +188,10 @@ function TrainerCardPage(): JSX.Element {
                       </div>
                       <ul className="user-card-coach__training-list">
                         {[].map((training) => (
-                          <PopularTraining popularTraining={training} key={training} /> /*<- training.id*/
+                          <PopularTraining
+                            popularTraining={training}
+                            key={training}
+                          /> /*<- training.id*/
                         ))}
                       </ul>
                       <form className="user-card-coach__training-form">
@@ -197,6 +229,9 @@ function TrainerCardPage(): JSX.Element {
           </div>
         </div>
       </main>
+      {isVisibleMapPopup && (
+        <PopupMap name="" address="" isGymLocation={false} setPopupVisible={setMapPopupVisible} />
+      )}
     </div>
   );
 }

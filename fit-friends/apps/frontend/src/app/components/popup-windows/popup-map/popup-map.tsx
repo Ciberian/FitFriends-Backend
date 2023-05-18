@@ -1,10 +1,14 @@
+import { CITY } from '../../../utils/constants';
+import Map from '../../map/map';
+
 type PopupMapProps = {
   name: string;
   address: string;
-  isGymLocation?: boolean;
+  isGymLocation: boolean;
+  setPopupVisible: () => void;
 }
 
-function PopupMap({name, address}: PopupMapProps): JSX.Element {
+function PopupMap({name, address, isGymLocation, setPopupVisible}: PopupMapProps): JSX.Element {
   return (
     <div className="wrapper">
       <main>
@@ -28,6 +32,7 @@ function PopupMap({name, address}: PopupMapProps): JSX.Element {
                   className="btn-icon btn-icon--outlined btn-icon--big"
                   type="button"
                   aria-label="close"
+                  onClick={setPopupVisible}
                 >
                   <svg width="20" height="20" aria-hidden="true">
                     <use xlinkHref="#icon-cross"></use>
@@ -36,29 +41,7 @@ function PopupMap({name, address}: PopupMapProps): JSX.Element {
               </div>
               <div className="popup__content-map">
                 <div className="popup__map">
-                  <picture>
-                    <source
-                      type="image/webp"
-                      srcSet="img/content/popup/map.webp, img/content/popup/map@2x.webp 2x"
-                    />
-                    <img
-                      src="img/content/popup/map.jpg"
-                      srcSet="img/content/popup/map@2x.jpg 2x"
-                      width="1160"
-                      height="623"
-                      alt=""
-                    />
-                  </picture>
-                  <div className="popup__pin popup__pin--user">
-                    <svg
-                      className="popup__pin-icon"
-                      width="40"
-                      height="49"
-                      aria-hidden="true"
-                    >
-                      <use xlinkHref="#icon-pin-user"></use>
-                    </svg>
-                  </div>
+                  <Map city={CITY} isGymLocation={isGymLocation} />
                 </div>
               </div>
             </div>
