@@ -1,6 +1,5 @@
 import { store } from '../store/index.js';
 import { AuthorizationStatus } from '../app/utils/constants.js';
-import { ITokenPayload } from '../../../../libs/shared-types/src/lib/token-payload.interface.js';
 import { ITraining } from '../../../../libs/shared-types/src/lib/training.interface.js';
 import { IGym } from '../../../../libs/shared-types/src/lib/gym.interface.js';
 
@@ -10,7 +9,7 @@ export type CurrentError = {
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
-  userInfo: null | ITokenPayload;
+  userInfo: null | LoggedUserData;
 };
 
 export type GymsData = {
@@ -31,6 +30,7 @@ export type AuthData = {
 export type LoggedUserData = {
   id: number;
   email: string;
+  role: string;
   accessToken: string;
   refreshToken: string;
 };

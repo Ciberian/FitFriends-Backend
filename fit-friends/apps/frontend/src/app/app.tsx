@@ -1,5 +1,10 @@
-import { UserRole } from '../../../../libs/shared-types/src/lib/enums/user-role.enum';
+import { useAppSelector } from '../hooks';
 import { AppRoute } from './utils/constants';
+import {
+  getAuthorizationStatus,
+  getUserInfo,
+} from '../store/user-process/selectors';
+import { UserRole } from '../../../../libs/shared-types/src/lib/enums/user-role.enum';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/private-route/private-route';
 import LoadingScreen from './components/loading-screen/loading-screen';
@@ -29,16 +34,16 @@ import UsersCatalogPage from './pages/users-catalog-page/users-catalog-page';
 import ClientCardPage from './pages/client-card-page/client-card-page';
 import TrainerCardPage from './pages/trainer-card-page/trainer-card-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
+import { getLoadedGymsStatus } from '../store/gyms-data/selectors';
+import { getLoadedTrainingsStatus } from '../store/trainings-data/selectors';
 
 export function App() {
-  // const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  // const isDataLoaded = useAppSelector(getLoadedDataStatus);
-  // const user = useAppSelector(getUser);
-  const isDataLoaded = true; // временный вариант
-  const authorizationStatus = 'AUTH'; // временный вариант
-  const user = { role: UserRole.Client }; // временный вариант
+  const user = useAppSelector(getUserInfo);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isTrainingsDataLoaded = useAppSelector(getLoadedTrainingsStatus);
+  const isGymsDataLoaded = useAppSelector(getLoadedGymsStatus);
 
-  if (!isDataLoaded) {
+  if (!isGymsDataLoaded && !isTrainingsDataLoaded) {
     return <LoadingScreen />;
   }
 
@@ -48,13 +53,19 @@ export function App() {
         <Route path={AppRoute.Intro} element={<IntroPage />} />
         <Route path={AppRoute.SignIn} element={<SignInPage />} />
         <Route path={AppRoute.SignUp} element={<SignUpPage />} />
-        <Route path={AppRoute.QuestionnaireClient} element={<QuestionnaireClientPage />} />
-        <Route path={AppRoute.QuestionnaireTrainer} element={<QuestionnaireTrainerPage />} />
-      <Route
+        <Route
+          path={AppRoute.QuestionnaireClient}
+          element={<QuestionnaireClientPage />}
+        />
+        <Route
+          path={AppRoute.QuestionnaireTrainer}
+          element={<QuestionnaireTrainerPage />}
+        />
+        <Route
           index
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
-              {user.role === UserRole.Client ? (
+              {user?.role === UserRole.Client ? (
                 <IndexPage />
               ) : (
                 <Navigate to={AppRoute.TrainerPersonalAccount} />
@@ -63,7 +74,7 @@ export function App() {
           }
         />
 
-      <Route
+        <Route
           path={AppRoute.TrainerPersonalAccount}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>

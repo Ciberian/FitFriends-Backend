@@ -89,7 +89,7 @@ export class AuthController {
     const user = await this.authService.verifyUser(dto);
     const tokens = await this.authService.loginUser(user);
 
-    return fillDTO(LoggedUserRdo, { _id: user._id, email: user.email, ...tokens })
+    return fillDTO(LoggedUserRdo, { _id: user._id, email: user.email, role: user.role, ...tokens })
   }
 
   @Post(':id/refresh')
