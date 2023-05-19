@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 function QuestionnaireTrainerPage(): JSX.Element {
   const location = useLocation();
-  const prevFormData = location.state;
+  const prevFormData = location.state.firstForm;
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -87,7 +87,7 @@ function QuestionnaireTrainerPage(): JSX.Element {
                           </div>
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="level" checked /><span className="custom-toggle-radio__icon"></span><span className="custom-toggle-radio__label">Любитель</span>
+                              <input type="radio" name="level" defaultChecked /><span className="custom-toggle-radio__icon"></span><span className="custom-toggle-radio__label">Любитель</span>
                             </label>
                           </div>
                           <div className="custom-toggle-radio__block">

@@ -2099,7 +2099,7 @@ input:active + .custom-textarea__text {
   white-space: nowrap;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
-  opacity: 0;
+  /* opacity: 0; */
   -webkit-transition: opacity 0.3s ease 0.1s;
   -o-transition: opacity 0.3s ease 0.1s;
   transition: opacity 0.3s ease 0.1s;

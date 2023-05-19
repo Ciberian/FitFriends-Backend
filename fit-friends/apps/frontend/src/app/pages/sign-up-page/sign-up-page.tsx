@@ -1,18 +1,31 @@
-import { FormEvent } from 'react';
-import { Navigate } from 'react-router-dom';
+import { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../utils/constants';
 
 function SignUpPage(): JSX.Element {
+  const [location, setLocation] = useState('Пионерская');
+  const [locationsListVisibility, setLocationsListVisibility] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSelectLocation = () => {
+    setLocationsListVisibility((prev) => !prev);
+  };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target as HTMLFormElement);
+    formData.append('location', location);
+
+    const data: {[K in string]: unknown} = {};
+    for( const [key, value] of formData.entries()){
+      data[key] = value;
+    }
 
     if (formData.get('role') === 'client') {
-      <Navigate to={AppRoute.QuestionnaireClient} state={formData} />
+      navigate(AppRoute.QuestionnaireClient, { state: { firstForm: data}});
     } else {
-      <Navigate to={AppRoute.QuestionnaireTrainer} state={formData} />
+      navigate(AppRoute.QuestionnaireTrainer, { state: { firstForm: data}});
     }
   };
 
@@ -44,7 +57,7 @@ function SignUpPage(): JSX.Element {
                 <h1 className="popup-form__title">Регистрация</h1>
               </div>
               <div className="popup-form__form">
-                <form method="get" onSubmit={handleSubmit} >
+                <form method="get" onSubmit={handleSubmit}>
                   <div className="sign-up">
                     <div className="sign-up__load-photo">
                       <div className="input-load-avatar">
@@ -53,6 +66,7 @@ function SignUpPage(): JSX.Element {
                             className="visually-hidden"
                             type="file"
                             accept="image/png, image/jpeg"
+                            name='avatar'
                           />
                           <span className="input-load-avatar__btn">
                             <svg width="20" height="20" aria-hidden="true">
@@ -109,15 +123,40 @@ function SignUpPage(): JSX.Element {
                           className="custom-select__button"
                           type="button"
                           aria-label="Выберите одну из опций"
+                          onClick={handleSelectLocation}
                         >
-                          <span className="custom-select__text"></span>
+                          <span>{location}</span>
                           <span className="custom-select__icon">
                             <svg width="15" height="6" aria-hidden="true">
                               <use xlinkHref="#arrow-down"></use>
                             </svg>
                           </span>
                         </button>
-                        <ul className="custom-select__list" role="listbox"></ul>
+                        <ul
+                          className={` ${
+                            locationsListVisibility
+                              ? 'custom-select__list--active'
+                              : 'custom-select__list'
+                          }`}
+                          role="listbox"
+                          style={{listStyle: 'none'}}
+                        >
+                          <li className="custom-select__item" onClick={() => setLocation('Пионерская')}>
+                            ст. м. Пионерская
+                          </li>
+                          <li className="custom-select__item" onClick={() => setLocation('Петроградская')}>
+                            ст. м. Петроградская
+                          </li>
+                          <li className="custom-select__item" onClick={() => setLocation('Удельная')}>
+                            ст. м. Удельная
+                          </li>
+                          <li className="custom-select__item" onClick={() => setLocation('Звёздная')}>
+                            ст. м. Звёздная
+                          </li>
+                          <li className="custom-select__item" onClick={() => setLocation('Спортивная')}>
+                            ст. м. Спортивная
+                          </li>
+                        </ul>
                       </div>
                       <div className="custom-input">
                         <label>
@@ -136,7 +175,7 @@ function SignUpPage(): JSX.Element {
                         <div className="custom-toggle-radio custom-toggle-radio--big">
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" value='male' />
+                              <input type="radio" name="sex" value="male" />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Мужской
@@ -145,7 +184,12 @@ function SignUpPage(): JSX.Element {
                           </div>
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" value='female' defaultChecked />
+                              <input
+                                type="radio"
+                                name="sex"
+                                value="female"
+                                defaultChecked
+                              />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Женский
@@ -154,7 +198,11 @@ function SignUpPage(): JSX.Element {
                           </div>
                           <div className="custom-toggle-radio__block">
                             <label>
-                              <input type="radio" name="sex" value='irrelevant' />
+                              <input
+                                type="radio"
+                                name="sex"
+                                value="irrelevant"
+                              />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
                                 Неважно
