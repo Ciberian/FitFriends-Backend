@@ -38,7 +38,7 @@ export const makeFakeTraining = (id: number): ITraining => ({
   title: random.word(),
   image: image.imageUrl(),
   level: UserLevel.Newbie,
-  type: 'Йога',
+  type: ['Йога'],
   duration: TrainingDuration.LessAnHour,
   gender: UserGender.Female,
   caloriesToLose: datatype.number({min: 100, max: 5000}),

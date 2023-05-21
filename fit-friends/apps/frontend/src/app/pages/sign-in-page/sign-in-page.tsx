@@ -1,11 +1,11 @@
-import { useAppDispatch, useAppSelector } from 'apps/frontend/src/hooks';
-import { FormEvent, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../utils/constants';
-import { loginAction } from 'apps/frontend/src/store/api-actions';
-import { getAuthorizationStatus, getUserInfo } from 'apps/frontend/src/store/user-process/selectors';
+import { FormEvent, useEffect, useRef } from 'react';
 import { AuthData } from 'apps/frontend/src/types/state';
-import { UserRole } from '@fit-friends/shared-types';
+import { loginAction } from 'apps/frontend/src/store/api-actions';
+import { AppRoute, AuthorizationStatus } from '../../utils/constants';
+import { useAppDispatch, useAppSelector } from 'apps/frontend/src/hooks';
+import { getAuthorizationStatus, getUserInfo } from 'apps/frontend/src/store/user-process/selectors';
+import { UserRole } from '../../../../../../libs/shared-types/src/lib/enums/user-role.enum';
 
 function SignInPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);

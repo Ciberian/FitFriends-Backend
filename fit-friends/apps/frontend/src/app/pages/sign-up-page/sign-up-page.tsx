@@ -1,14 +1,23 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../utils/constants';
 
 function SignUpPage(): JSX.Element {
+  const avatarPreview = useRef<null | HTMLImageElement>(null);
   const [location, setLocation] = useState('Пионерская');
   const [locationsListVisibility, setLocationsListVisibility] = useState(false);
+  const [avatarPreviewSrc, setAvatarPreviewSrc] = useState('');
   const navigate = useNavigate();
 
   const handleSelectLocation = () => {
     setLocationsListVisibility((prev) => !prev);
+  };
+
+  const handleUploadAvatar = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const avatarImg = (evt.target.files as FileList)[0];
+    const avatarSrc = URL.createObjectURL(avatarImg);
+
+    setAvatarPreviewSrc(avatarSrc);
   };
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
@@ -17,15 +26,15 @@ function SignUpPage(): JSX.Element {
     const formData = new FormData(evt.target as HTMLFormElement);
     formData.append('location', location);
 
-    const data: {[K in string]: unknown} = {};
-    for( const [key, value] of formData.entries()){
+    const data: { [K in string]: unknown } = {};
+    for (const [key, value] of formData.entries()) {
       data[key] = value;
     }
 
     if (formData.get('role') === 'client') {
-      navigate(AppRoute.QuestionnaireClient, { state: { firstForm: data}});
+      navigate(AppRoute.QuestionnaireClient, { state: { firstForm: data } });
     } else {
-      navigate(AppRoute.QuestionnaireTrainer, { state: { firstForm: data}});
+      navigate(AppRoute.QuestionnaireTrainer, { state: { firstForm: data } });
     }
   };
 
@@ -63,15 +72,33 @@ function SignUpPage(): JSX.Element {
                       <div className="input-load-avatar">
                         <label>
                           <input
+                            onChange={handleUploadAvatar}
                             className="visually-hidden"
                             type="file"
                             accept="image/png, image/jpeg"
-                            name='avatar'
+                            name="avatar"
+                            required
                           />
                           <span className="input-load-avatar__btn">
-                            <svg width="20" height="20" aria-hidden="true">
-                              <use xlinkHref="#icon-import"></use>
-                            </svg>
+                            {avatarPreviewSrc ? (
+                              <img
+                                ref={avatarPreview}
+                                src={avatarPreviewSrc}
+                                alt="User avatar preview"
+                                width={98}
+                                height={98}
+                                style={{
+                                  borderRadius: '50%',
+                                  width: 'auto',
+                                  height: '100%',
+                                  backgroundSize: 'cover',
+                                }}
+                              />
+                            ) : (
+                              <svg width="20" height="20" aria-hidden="true">
+                                <use xlinkHref="#icon-import"></use>
+                              </svg>
+                            )}
                           </span>
                         </label>
                       </div>
@@ -89,7 +116,7 @@ function SignUpPage(): JSX.Element {
                         <label>
                           <span className="custom-input__label">Имя</span>
                           <span className="custom-input__wrapper">
-                            <input type="text" name="name" />
+                            <input type="text" name="name" required />
                           </span>
                         </label>
                       </div>
@@ -97,7 +124,7 @@ function SignUpPage(): JSX.Element {
                         <label>
                           <span className="custom-input__label">E-mail</span>
                           <span className="custom-input__wrapper">
-                            <input type="email" name="email" />
+                            <input type="email" name="email" required />
                           </span>
                         </label>
                       </div>
@@ -109,8 +136,9 @@ function SignUpPage(): JSX.Element {
                           <span className="custom-input__wrapper">
                             <input
                               type="date"
-                              name="birthday"
+                              name="birthDate"
                               max="2099-12-31"
+                              required
                             />
                           </span>
                         </label>
@@ -139,21 +167,36 @@ function SignUpPage(): JSX.Element {
                               : 'custom-select__list'
                           }`}
                           role="listbox"
-                          style={{listStyle: 'none'}}
+                          style={{ listStyle: 'none' }}
                         >
-                          <li className="custom-select__item" onClick={() => setLocation('Пионерская')}>
+                          <li
+                            className="custom-select__item"
+                            onClick={() => setLocation('Пионерская')}
+                          >
                             ст. м. Пионерская
                           </li>
-                          <li className="custom-select__item" onClick={() => setLocation('Петроградская')}>
+                          <li
+                            className="custom-select__item"
+                            onClick={() => setLocation('Петроградская')}
+                          >
                             ст. м. Петроградская
                           </li>
-                          <li className="custom-select__item" onClick={() => setLocation('Удельная')}>
+                          <li
+                            className="custom-select__item"
+                            onClick={() => setLocation('Удельная')}
+                          >
                             ст. м. Удельная
                           </li>
-                          <li className="custom-select__item" onClick={() => setLocation('Звёздная')}>
+                          <li
+                            className="custom-select__item"
+                            onClick={() => setLocation('Звёздная')}
+                          >
                             ст. м. Звёздная
                           </li>
-                          <li className="custom-select__item" onClick={() => setLocation('Спортивная')}>
+                          <li
+                            className="custom-select__item"
+                            onClick={() => setLocation('Спортивная')}
+                          >
                             ст. м. Спортивная
                           </li>
                         </ul>
@@ -166,6 +209,7 @@ function SignUpPage(): JSX.Element {
                               type="password"
                               name="password"
                               autoComplete="off"
+                              required
                             />
                           </span>
                         </label>
@@ -188,7 +232,6 @@ function SignUpPage(): JSX.Element {
                                 type="radio"
                                 name="sex"
                                 value="female"
-                                defaultChecked
                               />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
@@ -202,6 +245,7 @@ function SignUpPage(): JSX.Element {
                                 type="radio"
                                 name="sex"
                                 value="irrelevant"
+                                defaultChecked
                               />
                               <span className="custom-toggle-radio__icon"></span>
                               <span className="custom-toggle-radio__label">
@@ -260,7 +304,7 @@ function SignUpPage(): JSX.Element {
                           type="checkbox"
                           value="user-agreement"
                           name="user-agreement"
-                          defaultChecked
+                          required
                         />
                         <span className="sign-up__checkbox-icon">
                           <svg width="9" height="6" aria-hidden="true">
