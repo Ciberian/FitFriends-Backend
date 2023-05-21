@@ -1,4 +1,42 @@
+import { useAppDispatch, useAppSelector } from 'apps/frontend/src/hooks';
+import { FormEvent, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../utils/constants';
+import { loginAction } from 'apps/frontend/src/store/api-actions';
+import { getAuthorizationStatus, getUserInfo } from 'apps/frontend/src/store/user-process/selectors';
+import { AuthData } from 'apps/frontend/src/types/state';
+import { UserRole } from '@fit-friends/shared-types';
+
 function SignInPage(): JSX.Element {
+  const loginRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
+  const user = useAppSelector(getUserInfo);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(user?.role === UserRole.Client ? AppRoute.Root : AppRoute.TrainerPersonalAccount);
+    }
+  }, [authorizationStatus, navigate]);
+
+  const onSubmit = (authData: AuthData) => {
+    dispatch(loginAction(authData));
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    if (loginRef.current !== null && passwordRef.current !== null) {
+      onSubmit({
+        login: loginRef.current.value,
+        password: passwordRef.current.value,
+      });
+    }
+  };
+
   return (
     <div className="wrapper">
       <main>
@@ -27,13 +65,22 @@ function SignInPage(): JSX.Element {
                 <h1 className="popup-form__title">Вход</h1>
               </div>
               <div className="popup-form__form">
-                <form method="get">
+                <form
+                  action="#"
+                  method="post"
+                  onSubmit={handleSubmit}
+                >
                   <div className="sign-in">
                     <div className="custom-input sign-in__input">
                       <label>
                         <span className="custom-input__label">E-mail</span>
                         <span className="custom-input__wrapper">
-                          <input type="email" name="email" />
+                          <input
+                            ref={loginRef}
+                            type="email"
+                            name="email"
+                            required
+                          />
                         </span>
                       </label>
                     </div>
@@ -41,7 +88,12 @@ function SignInPage(): JSX.Element {
                       <label>
                         <span className="custom-input__label">Пароль</span>
                         <span className="custom-input__wrapper">
-                          <input type="password" name="password" />
+                          <input
+                            ref={passwordRef}
+                            type="password"
+                            name="password"
+                            required
+                          />
                         </span>
                       </label>
                     </div>

@@ -11,7 +11,7 @@ export class TrainingEntity implements ITraining {
   public title: string;
   public image: string;
   public level: UserLevel;
-  public type: TrainingType;
+  public type: TrainingType[];
   public duration: TrainingDuration;
   public gender: UserGender;
   public caloriesToLose: number;

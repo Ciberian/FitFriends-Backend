@@ -13,7 +13,7 @@ model Training {
   title              String
   image              String
   level              String
-  type               String
+  type               String[]
   duration           String
   gender             String
   caloriesToLose     Int

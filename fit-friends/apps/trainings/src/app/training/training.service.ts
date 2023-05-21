@@ -94,7 +94,7 @@ export class TrainingService {
       throw new ForbiddenException(TrainingErrorMessage.WrongUserId);
     }
 
-    const trainingEntity = new TrainingEntity({ ...existTraining as ITraining, ...dto });
+    const trainingEntity = new TrainingEntity({ ...existTraining as unknown as ITraining, ...dto });
     const updatedTraining = await this.trainingRepository.update(trainingId, trainingEntity);
 
     return updatedTraining;

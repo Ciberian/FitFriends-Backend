@@ -8,7 +8,7 @@ export interface ITraining {
   title: string;
   image: string;
   level: UserLevel;
-  type: TrainingType;
+  type: TrainingType[];
   duration: TrainingDuration;
   gender: UserGender;
   caloriesToLose: number;
