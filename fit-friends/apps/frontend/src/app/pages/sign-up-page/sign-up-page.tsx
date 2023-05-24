@@ -171,31 +171,46 @@ function SignUpPage(): JSX.Element {
                         >
                           <li
                             className="custom-select__item"
-                            onClick={() => setLocation('Пионерская')}
+                            onClick={() => {
+                              setLocation('Пионерская');
+                              setLocationsListVisibility((prev) => !prev)
+                            }}
                           >
                             ст. м. Пионерская
                           </li>
                           <li
                             className="custom-select__item"
-                            onClick={() => setLocation('Петроградская')}
+                            onClick={() => {
+                              setLocation('Петроградская');
+                              setLocationsListVisibility((prev) => !prev)
+                            }}
                           >
                             ст. м. Петроградская
                           </li>
                           <li
                             className="custom-select__item"
-                            onClick={() => setLocation('Удельная')}
+                            onClick={() => {
+                              setLocation('Удельная');
+                              setLocationsListVisibility((prev) => !prev)
+                            }}
                           >
                             ст. м. Удельная
                           </li>
                           <li
                             className="custom-select__item"
-                            onClick={() => setLocation('Звёздная')}
+                            onClick={() => {
+                              setLocation('Звёздная');
+                              setLocationsListVisibility((prev) => !prev)
+                            }}
                           >
                             ст. м. Звёздная
                           </li>
                           <li
                             className="custom-select__item"
-                            onClick={() => setLocation('Спортивная')}
+                            onClick={() => {
+                              setLocation('Спортивная');
+                              setLocationsListVisibility((prev) => !prev)
+                            }}
                           >
                             ст. м. Спортивная
                           </li>

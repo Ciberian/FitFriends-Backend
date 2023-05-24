@@ -8,7 +8,7 @@ export interface IUser {
   _id?: Types.ObjectId;
   name: string;
   email: string;
-  passwordHash: string;
+  passwordHash?: string;
   gender: UserGender;
   role: UserRole;
   location: MetroStation;

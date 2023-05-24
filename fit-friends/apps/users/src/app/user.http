@@ -12,7 +12,7 @@ Content-Type: application/json
   "birthDate": "2002-02-02",
   "level": "Новичок",
   "trainingType": "Бокс",
-  "certificates": "certificate2.pdf",
+  "certificates": ["certificate2.pdf"],
   "merits": "Персональный тренер и инструктор групповых программ с опытом  более 4х лет. Специализация: коррекция фигуры и осанки, снижение веса, восстановление после травм, пилатес.",
   "personalTraining": "true"
 }

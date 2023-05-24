@@ -5,6 +5,8 @@ import { APIRoute } from '../app/utils/constants';
 import { ITraining } from '../../../../libs/shared-types/src/lib/training.interface';
 import { IGym } from '../../../../libs/shared-types/src/lib/gym.interface';
 import { AppDispatch, AuthData, LoggedUserData, State } from '../types/state';
+import { CreateTrainerDto } from '../../../../libs/core/src/lib/dto/users-dto/create-trainer.dto';
+import { CreateClientDto } from '../../../../libs/core/src/lib/dto/users-dto/create-client.dto';
 
 export const fetchGymsAction = createAsyncThunk<
   IGym[],
@@ -60,6 +62,34 @@ export const loginAction = createAsyncThunk<
   });
   saveAccessToken(data.accessToken);
   saveRefreshToken(data.refreshToken);
-  
+
+  return data;
+});
+
+export const registerTrainerAction = createAsyncThunk<
+  LoggedUserData,
+  CreateTrainerDto,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('user/registerTrainer', async (CreateTrainerDto, { extra: api }) => {
+  const { data } = await api.post<LoggedUserData>(`${APIRoute.Users}/register`, CreateTrainerDto);
+
+  return data;
+});
+
+export const registerClientAction = createAsyncThunk<
+  LoggedUserData,
+  CreateClientDto,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>('user/registerTrainer', async (CreateClientDto, { extra: api }) => {
+  const { data } = await api.post<LoggedUserData>(`${APIRoute.Users}/register`, CreateClientDto);
+
   return data;
 });
