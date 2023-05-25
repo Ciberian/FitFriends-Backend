@@ -88,7 +88,7 @@ export const registerClientAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->('user/registerTrainer', async (CreateClientDto, { extra: api }) => {
+>('user/registerClient', async (CreateClientDto, { extra: api }) => {
   const { data } = await api.post<LoggedUserData>(`${APIRoute.Users}/register`, CreateClientDto);
 
   return data;

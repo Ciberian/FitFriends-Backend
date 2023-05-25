@@ -82,7 +82,7 @@ export class CreateTrainerDto {
     example: '2000-01-01T00:00:00.000Z',
   })
   @IsOptional()
-  @IsISO8601({ message: UsersErrorMessage.BirthDateNotValid })
+  @IsISO8601()
   public birthDate?: Date;
 
   @ApiProperty({
