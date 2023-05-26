@@ -7,7 +7,6 @@ import {
 import { UserRole } from '../../../../libs/shared-types/src/lib/enums/user-role.enum';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/private-route/private-route';
-import LoadingScreen from './components/loading-screen/loading-screen';
 import IntroPage from './pages/intro-page/intro-page';
 import SignInPage from './pages/sign-in-page/sign-in-page';
 import SignUpPage from './pages/sign-up-page/sign-up-page';
@@ -34,18 +33,10 @@ import UsersCatalogPage from './pages/users-catalog-page/users-catalog-page';
 import ClientCardPage from './pages/client-card-page/client-card-page';
 import TrainerCardPage from './pages/trainer-card-page/trainer-card-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
-import { getLoadedGymsStatus } from '../store/gyms-data/selectors';
-import { getLoadedTrainingsStatus } from '../store/trainings-data/selectors';
 
 export function App() {
   const user = useAppSelector(getUserInfo);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const isTrainingsDataLoaded = useAppSelector(getLoadedTrainingsStatus);
-  const isGymsDataLoaded = useAppSelector(getLoadedGymsStatus);
-
-  if (!isGymsDataLoaded && !isTrainingsDataLoaded) {
-    return <LoadingScreen />;
-  }
 
   return (
     <Routes>
