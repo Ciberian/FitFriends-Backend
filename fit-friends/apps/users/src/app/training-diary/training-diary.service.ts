@@ -14,7 +14,7 @@ import {
 import { Injectable, ForbiddenException } from '@nestjs/common';
 import { ClientRepository } from '../client/client.repository';
 import { TrainingDiaryRepository } from './training-diary.repository';
-import { AuthErrorMessage } from '../app.constant';
+import { AuthErrorMessage, DATE_FORMAT, WeekDay } from '../app.constant';
 import { Types } from 'mongoose';
 
 @Injectable()
@@ -33,8 +33,8 @@ export class TrainingDiaryService {
     const trainingDiary = await this.trainingDiaryRepository.findById(trainingDiaryId);
     const weekDay = getTodayWeekday();
 
-    if (weekDay === 'mon' &&
-      dayjs(trainingDiary.mon.date).format('D MMMM') !== dayjs(new Date()).format('D MMMM')
+    if (weekDay === WeekDay.Monday &&
+      dayjs(trainingDiary.mon.date).format(DATE_FORMAT) !== dayjs(new Date()).format(DATE_FORMAT)
     ) {
       return this.resetTrainingDiary(trainingDiaryId);
     }

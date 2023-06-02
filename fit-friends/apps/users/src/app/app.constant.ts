@@ -30,6 +30,8 @@ export const UnchangeableUserProperties = [
   'alerts',
 ];
 
+export const DATE_FORMAT = 'D MMMM';
+
 export const User = {
   DefaultCountLimit: 50,
   DefaultSortDirection: 'desc',
@@ -49,6 +51,16 @@ export enum UserName {
 export enum TokenExpire {
   Access = 60 * 15,
   Refresh = 60 * 60 * 24 * 7,
+}
+
+export enum WeekDay {
+  Monday = 'mon',
+  Tuesday = 'tue',
+  Wednesday = 'wed',
+  Thursday = 'thu',
+  Friday = 'fri',
+  Saturday = 'sat',
+  Sunday = 'sun',
 }
 
 export enum AuthErrorMessage {
@@ -144,29 +156,35 @@ export const UsersTest = {
   ClientBalanceDto: {
     type: OrderType.Training,
     serviceId: 3,
-    quantity: 33
+    quantity: 33,
   },
   ClientBalanceResult: {
-    trainings: [{
-      trainingId: 12,
-      availableTrainingsCount: 10,
-    }, {
-      trainingId: 34,
-      availableTrainingsCount: 20,
-    }],
-    gyms: [{
-      gymId: 56,
-      seasonPassCount: 30,
-    }, {
-      gymId: 78,
-      seasonPassCount: 40,
-    }]
+    trainings: [
+      {
+        trainingId: 12,
+        availableTrainingsCount: 10,
+      },
+      {
+        trainingId: 34,
+        availableTrainingsCount: 20,
+      },
+    ],
+    gyms: [
+      {
+        gymId: 56,
+        seasonPassCount: 30,
+      },
+      {
+        gymId: 78,
+        seasonPassCount: 40,
+      },
+    ],
   },
   TrainingDiaryDto: {
-    trainingTitle: "Box",
+    trainingTitle: 'Box',
     calories: 1800,
     duration: TrainingDuration.LessAnHour,
-  }
+  },
 };
 
 export const DEFAULT_NUTRITION_DIARY = {
@@ -238,7 +256,7 @@ export const DEFAULT_TRAINING_DIARY = {
   sat: { trainings: [], totalCaloriesPerDay: 0, date: new Date() },
   sun: { trainings: [], totalCaloriesPerDay: 0, date: new Date() },
   totalCaloriesPerWeek: 0,
-}
+};
 
 export const DEFAULT_CLIENT_PROGRESS = {
   mon: {

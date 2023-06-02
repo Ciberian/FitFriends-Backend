@@ -3,31 +3,34 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app/app.module';
 
-const SERVICE_TITLE = 'The «Fit friends BFF» service';
-const SERVICE_DESCRIPTION = 'Fit friends BFF service API';
-const SERVICE_VERSION = '1.0';
-const SPECIFICATION_PATH = 'spec';
-const GLOBAL_PREFIX = 'api';
+const ServiceConfig = {
+  Title: 'The «Fit friends BFF» service',
+  Description: 'Fit friends BFF service API',
+  Version: '1.0',
+  SpecPath: 'spec',
+  GlobalPrefix: 'api',
+} as const;
+
 const DEFAULT_PORT = 3000;
+const port = process.env.PORT || DEFAULT_PORT;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
 
   const config = new DocumentBuilder()
-  .setTitle(SERVICE_TITLE)
-  .setDescription(SERVICE_DESCRIPTION)
-  .setVersion(SERVICE_VERSION)
-  .build();
+    .setTitle(ServiceConfig.Title)
+    .setDescription(ServiceConfig.Description)
+    .setVersion(ServiceConfig.Version)
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup(SPECIFICATION_PATH, app, document);
+  SwaggerModule.setup(ServiceConfig.SpecPath, app, document);
 
-  app.setGlobalPrefix(GLOBAL_PREFIX);
-  const port = process.env.PORT || DEFAULT_PORT;
+  app.setGlobalPrefix(ServiceConfig.GlobalPrefix);
 
   await app.listen(port);
-  Logger.log(`🚀 BFF is running on: http://localhost:${port}/${GLOBAL_PREFIX}`);
+  Logger.log(`🚀 BFF is running on: http://localhost:${port}/${ServiceConfig.GlobalPrefix}`);
 }
 
 bootstrap();
